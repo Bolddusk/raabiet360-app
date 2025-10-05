@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "400380896191",
+    "project_id": "raabiet30",
+    "storage_bucket": "raabiet30.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:400380896191:android:6e117c317ad50871bf370a",
+        "android_client_info": {
+          "package_name": "io.iqsoft.raabiet360app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvhQaB7mWofT9hV5woPKmmXfmvs7acVHE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

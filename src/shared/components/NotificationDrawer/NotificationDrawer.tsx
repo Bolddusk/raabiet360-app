@@ -16,7 +16,7 @@ import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 
 import { useTheme, useNotifications } from '@providers';
-import { Notification } from '@providers/NotificationProvider';
+import { Notification } from '@providers';
 import { ICONS } from '@assets/svg';
 import { styles } from './NotificationDrawer.styles';
 

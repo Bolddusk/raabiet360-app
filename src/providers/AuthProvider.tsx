@@ -7,12 +7,14 @@ import React, {
   useState,
 } from 'react';
 import * as Keychain from 'react-native-keychain';
+import messaging from '@react-native-firebase/messaging';
 
-import { API_ENDPOINT, BASE_URL, patchData, postData } from '@api';
+import { API_ENDPOINT, BASE_URL, notificationApi, patchData, postData } from '@api';
 import { KEYS } from '@constant';
 import useAsyncStorage from '@shared/hooks/useAsyncStorage';
 import { showFlash } from '@shared/utils/helpers';
 import { AuthBundle, AuthContextProps, ProviderProps } from '@types';
+// import { useNotifications } from '@providers';
 
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
@@ -24,24 +26,29 @@ export const axiosInstance = axios.create({
 
 // Add request interceptor to automatically inject auth token
 axiosInstance.interceptors.request.use(
-  async (config) => {
+  async config => {
     try {
-      console.log('🔔 Axios interceptor - adding auth token to request:', config.url);
-      
+      console.log(
+        '🔔 Axios interceptor - adding auth token to request:',
+        config.url,
+      );
+
       // Get token from keychain
       const savedAuth = await Keychain.getGenericPassword({
         service: KEYS.AUTH,
       });
-      
+
       console.log('🔔 Keychain auth data:', savedAuth ? 'Present' : 'Missing');
-      
+
       if (savedAuth) {
         const parsed = JSON.parse(savedAuth.password);
-        console.log('🔔 Parsed auth data:', { 
+        console.log('🔔 Parsed auth data:', {
           hasAccessToken: !!parsed.accessToken,
-          tokenPreview: parsed.accessToken ? parsed.accessToken.substring(0, 20) + '...' : 'No token'
+          tokenPreview: parsed.accessToken
+            ? parsed.accessToken.substring(0, 20) + '...'
+            : 'No token',
         });
-        
+
         if (parsed.accessToken) {
           config.headers.Authorization = `Bearer ${parsed.accessToken}`;
           console.log('🔔 Authorization header added to request');
@@ -54,12 +61,12 @@ axiosInstance.interceptors.request.use(
     } catch (error) {
       console.log('🔔 Error getting auth token for interceptor:', error);
     }
-    
+
     return config;
   },
-  (error) => {
+  error => {
     return Promise.reject(error);
-  }
+  },
 );
 
 const DEFAULT_AUTH: AuthBundle = {
@@ -80,6 +87,7 @@ export const useAuth = () => {
 
 export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
   const { fetchAsync, saveAsync, deleteAsync } = useAsyncStorage<any>();
+  // const { removeFcmToken } = useNotifications();
 
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [userInfo, setUserInfo] = useState<any>({});
@@ -169,6 +177,8 @@ export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
         setIsLoggedIn(true);
         setUserInfo(infoToStore);
         setAuthData(authBundle);
+
+        // await requestNotificationPermission();
       } catch (error: any) {
         showFlash({
           message:
@@ -183,8 +193,17 @@ export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
 
   const logout = useCallback(async () => {
     try {
+      const token = await messaging().getToken();
+      console.log('Removing FCM Token:', token);
+  
+      await notificationApi.removeUserToken({
+        token,
+      });
+  
+      await messaging().deleteToken();
       // Always try to call logout API, but don't fail if it doesn't work
       await postData(API_ENDPOINT.LOGOUT, undefined, authData.accessToken);
+      // await clearAllNotifications();
     } catch (error: any) {
       // Log the error but don't show it to user - we'll still proceed with local logout
       console.log('Logout API call failed:', error?.message || 'Unknown error');
@@ -198,7 +217,7 @@ export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
 
       await deleteAsync(KEYS.USER);
       await Keychain.resetGenericPassword({ service: KEYS.AUTH });
-      
+
       showFlash({
         message: 'Logged out successfully',
         type: 'success',
@@ -282,7 +301,8 @@ export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
         logout,
         updateProfile,
         updatePassword,
-      }}>
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -1,5 +1,4 @@
-import { axiosInstance } from '@providers';
-import { Notification } from '@providers/NotificationProvider';
+import { axiosInstance, Notification } from '@providers';
 import { API_ENDPOINT } from './endpoints';
 
 export interface NotificationApiResponse {
@@ -144,6 +143,27 @@ class NotificationApi {
     }
   }
 
+  async saveUserToken(data: { token: string }): Promise<{ success: boolean; message?: string }> {
+    try {
+      console.log('DTA WE HAVE IS',data)
+      const response = await axiosInstance.post(API_ENDPOINT.SAVE_USER_TOKEN, data);
+      console.log("NOTFIICATON RESPONE CRETED TOKEN")
+      return response.data;
+    } catch (error: any) {
+      console.error('Failed to save FCM token:', error);
+      throw new Error(error.response?.data?.message || 'Failed to save FCM token');
+    }
+  }
+
+  async removeUserToken(data: { token: string }): Promise<{ success: boolean; message?: string }> {
+    try {
+      const response = await axiosInstance.post(API_ENDPOINT.REMOVE_USER_TOKEN, data);
+      return response.data;
+    } catch (error: any) {
+      console.error('Failed to remove FCM token:', error);
+      throw new Error(error.response?.data?.message || 'Failed to remove FCM token');
+    }
+  }
 }
 
 export const notificationApi = new NotificationApi();

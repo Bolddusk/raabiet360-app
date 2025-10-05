@@ -1,5 +1,5 @@
-// export const BASE_URL = 'https://api-raabiet360.shasltd.com/api/';
-export const BASE_URL = 'http://192.168.217.194:3000/api/';
+export const BASE_URL = 'https://api-raabiet360.shasltd.com/api/';
+// export const BASE_URL = 'http://192.168.217.194:3000/api/';
 // export const BASE_URL = 'http://localhost:3000/api/';
 
 export const API_ENDPOINT = {
@@ -85,8 +85,10 @@ export const API_ENDPOINT = {
     if (params?.dateFrom) queryParams.append('dateFrom', params.dateFrom);
     if (params?.dateTo) queryParams.append('dateTo', params.dateTo);
     if (params?.status) queryParams.append('status', params.status);
-    if (params?.project_id) queryParams.append('project_id', params.project_id.toString());
-    if (params?.project_name) queryParams.append('project_name', params.project_name);
+    if (params?.project_id)
+      queryParams.append('project_id', params.project_id.toString());
+    if (params?.project_name)
+      queryParams.append('project_name', params.project_name);
     if (params?.sort_by) queryParams.append('sort_by', params.sort_by);
     if (params?.sort_order) queryParams.append('sort_order', params.sort_order);
     if (params?.page) queryParams.append('page', params.page.toString());
@@ -106,25 +108,28 @@ export const API_ENDPOINT = {
     `v1/pickup-requests/assigned-to-me/${id}`,
   UPDATE_PICKUP_REQUEST_STATUS: (id: number) =>
     `v1/pickup-requests/${id}/status`,
-        // Notification endpoints with v1/m/ prefix (global prefix is api/)
-        NOTIFICATIONS: (params?: {
-          page?: number;
-          limit?: number;
-          is_read?: boolean;
-          type?: string;
-        }) => {
-          const queryParams = new URLSearchParams();
-          if (params?.page) queryParams.append('page', params.page.toString());
-          if (params?.limit) queryParams.append('limit', params.limit.toString());
-          if (params?.is_read !== undefined) queryParams.append('is_read', params.is_read.toString());
-          if (params?.type) queryParams.append('type', params.type);
-          return `v1/m/notifications?${queryParams.toString()}`;
-        },
-        NOTIFICATION_MARK_AS_READ: (notificationId: string) =>
-          `v1/m/notifications/${notificationId}/read`,
-        NOTIFICATION_MARK_ALL_AS_READ: 'v1/m/notifications/mark-all-read',
-        NOTIFICATION_CLEAR_ALL: 'v1/m/notifications/clear-all',
-        NOTIFICATION_UNREAD_COUNT: 'v1/m/notifications/unread-count',
-        NOTIFICATION_STATS: 'v1/m/notifications/stats',
-        NOTIFICATION_CREATE: 'v1/m/notifications',
+  // Notification endpoints with v1/m/ prefix (global prefix is api/)
+  NOTIFICATIONS: (params?: {
+    page?: number;
+    limit?: number;
+    is_read?: boolean;
+    type?: string;
+  }) => {
+    const queryParams = new URLSearchParams();
+    if (params?.page) queryParams.append('page', params.page.toString());
+    if (params?.limit) queryParams.append('limit', params.limit.toString());
+    if (params?.is_read !== undefined)
+      queryParams.append('is_read', params.is_read.toString());
+    if (params?.type) queryParams.append('type', params.type);
+    return `v1/m/notifications?${queryParams.toString()}`;
+  },
+  NOTIFICATION_MARK_AS_READ: (notificationId: string) =>
+    `v1/m/notifications/${notificationId}/read`,
+  NOTIFICATION_MARK_ALL_AS_READ: 'v1/m/notifications/mark-all-read',
+  NOTIFICATION_CLEAR_ALL: 'v1/m/notifications/clear-all',
+  NOTIFICATION_UNREAD_COUNT: 'v1/m/notifications/unread-count',
+  NOTIFICATION_STATS: 'v1/m/notifications/stats',
+  NOTIFICATION_CREATE: 'v1/m/notifications',
+  SAVE_USER_TOKEN: 'v1/fcm-tokens/add',
+  REMOVE_USER_TOKEN:'v1/fcm-tokens/remove'
 };

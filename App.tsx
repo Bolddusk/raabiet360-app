@@ -8,6 +8,7 @@ import {
   LocalizationProvider,
   NotificationProvider,
   PickupProvider,
+  PushNotificationProvider,
   StockProvider,
   ThemeProvider,
 } from '@providers';
@@ -19,12 +20,14 @@ const App = () => {
         <LocalizationProvider>
           <AuthProvider>
             <NotificationProvider>
-              <PickupProvider>
-                <StockProvider>
-                  <RootNavigation />
-                  <FlashMessage position={'bottom'} />
-                </StockProvider>
-              </PickupProvider>
+              <PushNotificationProvider>
+                <PickupProvider>
+                  <StockProvider>
+                    <RootNavigation />
+                    <FlashMessage position={'bottom'} />
+                  </StockProvider>
+                </PickupProvider>
+              </PushNotificationProvider>
             </NotificationProvider>
           </AuthProvider>
         </LocalizationProvider>
