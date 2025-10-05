@@ -55,9 +55,9 @@ export const useWorkerStock = () => {
   }, [activeTab, stockRequests]);
 
   const availableItems = useMemo(() => {
-    // console.log('🔄 availableItems memo - warehouseItems:', warehouseItems);
-    // console.log('🔄 availableItems memo - warehouseItems type:', typeof warehouseItems);
-    // console.log('🔄 availableItems memo - warehouseItems is array:', Array.isArray(warehouseItems));
+    console.log('🔄 availableItems memo - warehouseItems:', warehouseItems);
+    console.log('🔄 availableItems memo - warehouseItems type:', typeof warehouseItems);
+    console.log('🔄 availableItems memo - warehouseItems is array:', Array.isArray(warehouseItems));
     return warehouseItems || []; // Ensure it's always an array
   }, [warehouseItems]);
 
@@ -90,15 +90,15 @@ export const useWorkerStock = () => {
       return;
     }
     
-    // console.log('🔄 Loading assigned projects for user:', userInfo.id);
+    console.log('🔄 Loading assigned projects for user:', userInfo.id);
     setLoadingProjects(true);
     try {
-      // console.log('🔄 Calling ProjectApi.getMyProjects()...');
+      console.log('🔄 Calling ProjectApi.getMyProjects()...');
       const response = await ProjectApi.getMyProjects();
-      // console.log('📊 Raw projects response:', response);
-      // console.log('📊 Projects count:', response.length);
-      // console.log('📊 Response type:', typeof response);
-      // console.log('📊 Is array:', Array.isArray(response));
+      console.log('📊 Raw projects response:', response);
+      console.log('📊 Projects count:', response.length);
+      console.log('📊 Response type:', typeof response);
+      console.log('📊 Is array:', Array.isArray(response));
       
       // Log each project to see their structure
       response.forEach((project, index) => {
@@ -117,8 +117,8 @@ export const useWorkerStock = () => {
       });
       
       // Show ALL assigned projects first (don't filter by warehouse/driver yet)
-      // console.log('✅ All assigned projects:', response.length);
-      // console.log('✅ All assigned projects details:', response);
+      console.log('✅ All assigned projects:', response.length);
+      console.log('✅ All assigned projects details:', response);
       
       setAssignedProjects(response);
       
@@ -229,20 +229,20 @@ export const useWorkerStock = () => {
 
     setLoadingRequests(true);
     try {
-      // console.log('📋 Loading stock requests created by user:', userInfo.id);
+      console.log('📋 Loading stock requests created by user:', userInfo.id);
       
       // Use the creator-specific endpoint for efficiency
       const response = await StockApi.getCreatorStockRequests(userInfo.id, authData.accessToken);
       
       if (response.success) {
-        // console.log('📋 Creator stock requests loaded:', response.data);
-        // console.log('📋 Creator requests structure:', response.data.requests);
-        // console.log('📋 Creator requests count:', response.data.requests?.length);
+        console.log('📋 Creator stock requests loaded:', response.data);
+        console.log('📋 Creator requests structure:', response.data.requests);
+        console.log('📋 Creator requests count:', response.data.requests?.length);
         
         
         // Transform the data to match WorkerRequestCard expectations
         const transformedRequests = (response.data.requests || []).map(transformStockRequestData);
-        // console.log('📋 Transformed requests:', transformedRequests);
+        console.log('📋 Transformed requests:', transformedRequests);
         
         setStockRequests(transformedRequests);
       } else {
@@ -277,7 +277,7 @@ export const useWorkerStock = () => {
     if (!projectId || projectId === '') {
       setSelectedProject(null);
       setWarehouseItems([]);
-      // console.log('🔄 Project selection cleared');
+      console.log('🔄 Project selection cleared');
       return;
     }
 
@@ -285,7 +285,7 @@ export const useWorkerStock = () => {
     if (!project) return;
 
     setSelectedProject(project);
-    // console.log('🔄 Project selected:', project);
+    console.log('🔄 Project selected:', project);
 
     // Check warehouse and driver assignments
     const hasWarehouse = project.warehouse_id && project.warehouse_id > 0;
@@ -295,31 +295,31 @@ export const useWorkerStock = () => {
     const hasDriverName = project.driver_name && project.driver_name.trim() !== '';
     const hasDriverField = project.driver && project.driver.trim() !== '';
 
-    // console.log('📊 Project assignment check:', {
-    //   projectId: project.id,
-    //   projectName: project.customer, // This is the project name
-    //   hasWarehouse,
-    //   hasDriver,
-    //   hasDriverName,
-    //   hasDriverField,
-    //   warehouse_id: project.warehouse_id,
-    //   driver_id: project.driver_id,
-    //   warehouse_name: project.warehouse_name,
-    //   driver_name: project.driver_name,
-    //   driver: project.driver,
-    //   // Log all project fields to see what's available
-    //   allProjectFields: Object.keys(project),
-    // });
+    console.log('📊 Project assignment check:', {
+      projectId: project.id,
+      projectName: project.customer, // This is the project name
+      hasWarehouse,
+      hasDriver,
+      hasDriverName,
+      hasDriverField,
+      warehouse_id: project.warehouse_id,
+      driver_id: project.driver_id,
+      warehouse_name: project.warehouse_name,
+      driver_name: project.driver_name,
+      driver: project.driver,
+      // Log all project fields to see what's available
+      allProjectFields: Object.keys(project),
+    });
 
     // More flexible driver detection - check multiple ways
     const actuallyHasDriver = hasDriver || hasDriverName || hasDriverField;
     
-    // console.log('📊 Final driver check:', {
-    //   hasDriver,
-    //   hasDriverName, 
-    //   hasDriverField,
-    //   actuallyHasDriver,
-    // });
+    console.log('📊 Final driver check:', {
+      hasDriver,
+      hasDriverName, 
+      hasDriverField,
+      actuallyHasDriver,
+    });
 
     // Show appropriate messages based on assignments
     if (!hasWarehouse && !actuallyHasDriver) {
@@ -363,31 +363,31 @@ export const useWorkerStock = () => {
       return;
     }
     
-    // console.log('🔄 Loading warehouse items for warehouse ID:', warehouseId);
+    console.log('🔄 Loading warehouse items for warehouse ID:', warehouseId);
     setLoadingItems(true);
     try {
       const response = await StockApi.getStockItemsByWarehouse(warehouseId, authData.accessToken);
-      // console.log('📊 Warehouse items response:', response);
+      console.log('📊 Warehouse items response:', response);
       
       if (response.success) {
         // The API returns data in response.data.stockItems, not directly in response.data
         const rawItems = response.data.stockItems || response.data || [];
-        // console.log('📊 Raw items from API:', rawItems);
-        // console.log('📊 Items type:', typeof rawItems);
-        // console.log('📊 Items is array:', Array.isArray(rawItems));
-        // console.log('📊 Items length:', rawItems.length);
+        console.log('📊 Raw items from API:', rawItems);
+        console.log('📊 Items type:', typeof rawItems);
+        console.log('📊 Items is array:', Array.isArray(rawItems));
+        console.log('📊 Items length:', rawItems.length);
         
         // Filter items to only include those from the selected warehouse
         const warehouseItems = rawItems.filter(item => 
           item.warehouse_id === warehouseId
         );
-        console.log('warehouseItems',warehouseItems)
-        // console.log('📊 After warehouse filtering - items for warehouse', warehouseId, ':', warehouseItems.length);
-        // console.log('📊 Warehouse items:', warehouseItems.map(item => ({ 
-        //   code: item.item_code, 
-        //   name: item.item_name, 
-        //   warehouse_id: item.warehouse_id 
-        // })));
+        
+        console.log('📊 After warehouse filtering - items for warehouse', warehouseId, ':', warehouseItems.length);
+        console.log('📊 Warehouse items:', warehouseItems.map(item => ({ 
+          code: item.item_code, 
+          name: item.item_name, 
+          warehouse_id: item.warehouse_id 
+        })));
         
         // Remove duplicates based on item_code (in case there are still duplicates)
         const uniqueItems = warehouseItems.filter((item, index, self) => 
@@ -396,12 +396,12 @@ export const useWorkerStock = () => {
           )
         );
         
-        // console.log('📊 After deduplication - unique items:', uniqueItems.length);
-        // console.log('📊 Total items filtered out:', rawItems.length - uniqueItems.length);
-        // console.log('uniqueItems',uniqueItems)
+        console.log('📊 After deduplication - unique items:', uniqueItems.length);
+        console.log('📊 Total items filtered out:', rawItems.length - uniqueItems.length);
+        
         setWarehouseItems(uniqueItems);
-        // console.log('✅ Warehouse items set in state:', uniqueItems.length);
-        // console.log('📊 Items structure:', uniqueItems);
+        console.log('✅ Warehouse items set in state:', uniqueItems.length);
+        console.log('📊 Items structure:', uniqueItems);
       } else {
         throw new Error(response.message || 'Failed to load items');
       }
@@ -448,12 +448,12 @@ export const useWorkerStock = () => {
     // Find items that were just deselected (removed from the list)
     const newlyDeselectedCodes = currentSelectedCodes.filter(code => !selectedCodes.includes(code));
     
-    // console.log('🔄 Multi-select change:', {
-    //   selectedCodes,
-    //   currentSelectedCodes,
-    //   newlySelectedCodes,
-    //   newlyDeselectedCodes,
-    // });
+    console.log('🔄 Multi-select change:', {
+      selectedCodes,
+      currentSelectedCodes,
+      newlySelectedCodes,
+      newlyDeselectedCodes,
+    });
     
     // Remove deselected items
     let updatedSelectedItems = selectedItems.filter(item => !newlyDeselectedCodes.includes(item.code));
@@ -470,13 +470,13 @@ export const useWorkerStock = () => {
         category: item.category,
       }));
     
-    // console.log('🔍 [DEBUG] availableItems:', availableItems);
-    // console.log('🔍 [DEBUG] newlySelectedCodes:', newlySelectedCodes);
-    // console.log('🔍 [DEBUG] newItems being added:', newItems);
+    console.log('🔍 [DEBUG] availableItems:', availableItems);
+    console.log('🔍 [DEBUG] newlySelectedCodes:', newlySelectedCodes);
+    console.log('🔍 [DEBUG] newItems being added:', newItems);
     
     updatedSelectedItems = [...updatedSelectedItems, ...newItems];
     
-    // console.log('🔍 [DEBUG] updatedSelectedItems:', updatedSelectedItems);
+    console.log('🔍 [DEBUG] updatedSelectedItems:', updatedSelectedItems);
     setSelectedItems(updatedSelectedItems);
   };
 
@@ -489,13 +489,13 @@ export const useWorkerStock = () => {
     setSelectedItems([]);
     setSelectedProject(null);
     setWarehouseItems([]);
-    // console.log('🔄 Form reset manually by user');
+    console.log('🔄 Form reset manually by user');
   };
 
   // Auto-reset only when user successfully creates a request
   const resetFormAfterSuccess = () => {
     resetForm();
-    // console.log('🔄 Form reset after successful request creation');
+    console.log('🔄 Form reset after successful request creation');
     
     // Reload stock requests to show the new one
     if (userInfo?.id && authData?.accessToken) {
@@ -562,13 +562,13 @@ export const useWorkerStock = () => {
     setLoading(true);
     try {
       // Debug: Check what's in selectedItems
-      // console.log('🔍 [DEBUG] selectedItems before mapping:', selectedItems);
-      // console.log('🔍 [DEBUG] selectedItems structure:', selectedItems.map(item => ({
-      //   id: item.id,
-      //   code: item.code,
-      //   name: item.name,
-      //   quantity: item.quantity
-      // })));
+      console.log('🔍 [DEBUG] selectedItems before mapping:', selectedItems);
+      console.log('🔍 [DEBUG] selectedItems structure:', selectedItems.map(item => ({
+        id: item.id,
+        code: item.code,
+        name: item.name,
+        quantity: item.quantity
+      })));
 
       // Create stock request with auto-assigned driver
       const requestData = {

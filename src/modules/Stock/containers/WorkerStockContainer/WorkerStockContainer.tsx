@@ -57,8 +57,6 @@ const WorkerStockContainer = () => {
     closeModal,
   } = useWorkerStock();
 
-  console.log('availableItems',availableItems)
-
   return (
     <SafeAreaViewWrapper>
       <FullScreenWrapper bgColor={THEME_COLOR.primary}>

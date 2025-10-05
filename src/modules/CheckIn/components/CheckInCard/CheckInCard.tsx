@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { useTheme } from '@providers';
 import { PrimaryButton } from '@shared/components';
@@ -16,6 +17,7 @@ const CheckInCard: React.FC<CheckInCardProps> = ({
   loading = false,
 }) => {
   const { THEME_COLOR } = useTheme();
+  const { t } = useTranslation();
   const Styles = styles({ THEME_COLOR });
 
   return (
@@ -34,7 +36,7 @@ const CheckInCard: React.FC<CheckInCardProps> = ({
             <View style={Styles.timeContainer}>
               {checkInTime && (
                 <View style={Styles.timeRow}>
-                  <Text style={Styles.timeLabel}>In:</Text>
+                  <Text style={Styles.timeLabel}>{t('CheckIn.In')}</Text>
                   <Text style={Styles.timeText}>
                     {new Date(checkInTime).toLocaleString()}
                   </Text>
@@ -42,7 +44,7 @@ const CheckInCard: React.FC<CheckInCardProps> = ({
               )}
               {checkOutTime && (
                 <View style={Styles.timeRow}>
-                  <Text style={Styles.timeLabel}>Out:</Text>
+                  <Text style={Styles.timeLabel}>{t('CheckIn.Out')}</Text>
                   <Text style={Styles.timeText}>
                     {new Date(checkOutTime).toLocaleString()}
                   </Text>
@@ -55,7 +57,7 @@ const CheckInCard: React.FC<CheckInCardProps> = ({
         {status === 'recent' || status === 'ongoing' ? (
           <View style={Styles.rightContainer}>
             <PrimaryButton
-              text={status === 'recent' ? 'Check-In' : 'Check-Out'}
+              text={status === 'recent' ? t('CheckIn.CheckIn') : t('CheckIn.CheckOut')}
               onPress={() => onCheckIn()}
               containerStyle={Styles.checkInButton}
               disabled={loading}
@@ -64,7 +66,7 @@ const CheckInCard: React.FC<CheckInCardProps> = ({
           </View>
         ) : (
           <View style={Styles.rightCompletedContainer}>
-            <Text style={Styles.completedText}>Completed</Text>
+            <Text style={Styles.completedText}>{t('CheckIn.Completed')}</Text>
           </View>
         )}
       </View>

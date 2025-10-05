@@ -256,5 +256,6 @@ export const useWorkerPickup = () => {
     handleFinish,
     handleShowPickupDetails,
     handleClosePickupDetails,
+    loadWorkerPickupRequests,
   };
 };

@@ -1,4 +1,4 @@
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { commonStyles, SIZES } from '@styles/theme';
 import { WrapperProps } from '@types';

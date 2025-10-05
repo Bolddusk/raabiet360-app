@@ -1,10 +1,9 @@
-import { useCallback } from 'react';
-import { FlatList, View } from 'react-native';
-import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
+import { useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
+import { FlatList, View } from 'react-native';
 
-import { ICONS } from '@assets/svg';
-import { DATA, TOP_TABS_CHECKIN, SCREEN } from '@constant';
+import { DATA, SCREEN, TOP_TABS_CHECKIN } from '@constant';
 import { useTheme } from '@providers';
 import {
   ConfirmationModal,
@@ -37,6 +36,7 @@ const CheckInContainer = () => {
     handleCheckIn,
     handleConfirmation,
     onRefresh,
+    errorMessage,
   } = useCheckIn();
   const { t } = useTranslation();
 
@@ -49,29 +49,29 @@ const CheckInContainer = () => {
     switch (modalType) {
       case 'checkin-success':
         return {
-          title: 'Check-In Successful',
-          subtitle: 'You have successfully checked in to the project.',
+          title: t('Modal.CheckInSuccess'),
+          subtitle: t('Modal.CheckInSuccessMessage'),
           iconType: 'success' as ModalIconType,
           onPrimaryAction: handleConfirmation,
-          primaryButtonLabel: 'OK',
+          primaryButtonLabel: t('Modal.OK'),
         };
       case 'checkin-failed':
         return {
-          title: 'Check-In Failed',
-          subtitle: 'Failed to check in. Please try again.',
+          title: t('Modal.CheckInFailed'),
+          subtitle: errorMessage || t('Modal.CheckInFailedMessage'),
           iconType: 'error' as ModalIconType,
           onPrimaryAction: hideModal,
-          primaryButtonLabel: 'OK',
+          primaryButtonLabel: t('Modal.OK'),
           onSecondaryAction: handleReportIssue,
-          secondaryButtonLabel: 'Report Issue',
+          secondaryButtonLabel: t('Modal.ReportIssue'),
         };
       case 'checkout-confirmation':
         return {
-          title: 'Check-Out Successful',
-          subtitle: 'You have successfully checked out from the project.',
+          title: t('Modal.CheckOutSuccess'),
+          subtitle: t('Modal.CheckOutSuccessMessage'),
           iconType: 'success' as ModalIconType,
           onPrimaryAction: handleConfirmation,
-          primaryButtonLabel: 'OK',
+          primaryButtonLabel: t('Modal.OK'),
         };
       default:
         return {
@@ -79,7 +79,7 @@ const CheckInContainer = () => {
           subtitle: '',
           iconType: 'success' as ModalIconType,
           onPrimaryAction: hideModal,
-          primaryButtonLabel: 'OK',
+          primaryButtonLabel: t('Modal.OK'),
         };
     }
   };

@@ -3,6 +3,7 @@ export const BASE_URL = 'https://api-raabiet360.shasltd.com/api/';
 
 export const API_ENDPOINT = {
   LOGIN: 'v1/auth/login',
+  REPORT_CHECKIN_ISSUE: 'v1/attendance/report-issue',
   LOGOUT: 'v1/auth/logout',
   updateUser: (userId: number | string | null) => `v1/users/${userId}`,
   updatePassword: (userId: number | string | null) =>

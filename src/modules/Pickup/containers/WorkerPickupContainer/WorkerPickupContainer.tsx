@@ -1,4 +1,4 @@
-import { FlatList, View, Text } from 'react-native';
+import { FlatList, View, Text, RefreshControl } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { ICONS } from '@assets/svg';
@@ -49,6 +49,7 @@ const WorkerPickupContainer = () => {
     handleFinish,
     handleShowPickupDetails,
     handleClosePickupDetails,
+    loadWorkerPickupRequests,
   } = useWorkerPickup();
 
   return (
@@ -90,6 +91,14 @@ const WorkerPickupContainer = () => {
                 )}
                 contentContainerStyle={Styles.listContainer}
                 showsVerticalScrollIndicator={false}
+                refreshControl={
+                  <RefreshControl
+                    refreshing={loading}
+                    onRefresh={loadWorkerPickupRequests}
+                    colors={[THEME_COLOR.primary]}
+                    tintColor={THEME_COLOR.primary}
+                  />
+                }
               />
             ) : (
               <View style={Styles.emptyContainer}>

@@ -21,6 +21,7 @@ export const useCheckIn = () => {
   const [buttonLoading, setButtonLoading] = useState<number | null>(null); // Track which button is loading
   const [refreshing, setRefreshing] = useState(false); // For pull-to-refresh
   const [cachedLocation, setCachedLocation] = useState<any>(null); // Pre-cached location
+  const [errorMessage, setErrorMessage] = useState<string>(''); // Store backend error message
 
   const modalVisible = modalType !== null;
 
@@ -169,6 +170,7 @@ export const useCheckIn = () => {
 
   const hideModal = () => {
     setModalType(null);
+    setErrorMessage(''); // Clear error message when modal is closed
   };
 
   const handleCheckIn = async (item: any) => {
@@ -219,7 +221,10 @@ export const useCheckIn = () => {
         
         showModal('checkout-confirmation');
       }
-    } catch (error) {
+    } catch (error: any) {
+      // Extract error message from backend response
+      const backendErrorMessage = error?.message || 'Failed to check in. Please try again.';
+      setErrorMessage(backendErrorMessage);
       showModal('checkin-failed');
     } finally {
       setButtonLoading(null); // Clear button loading state
@@ -265,5 +270,6 @@ export const useCheckIn = () => {
     handleCheckIn,
     handleConfirmation,
     onRefresh,
+    errorMessage,
   };
 };
