@@ -16,6 +16,11 @@ end
 
 target 'Raabiet360' do
   config = use_native_modules!
+  pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
+
+  # Maps 
+  rn_maps_path = '../node_modules/react-native-maps'
+  pod 'react-native-maps/Google', :path => rn_maps_path
 
   use_react_native!(
     :path => config[:reactNativePath],

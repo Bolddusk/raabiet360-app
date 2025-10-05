@@ -1,4 +1,4 @@
-package com.raabiet360
+package io.iqsoft.raabiet360app
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

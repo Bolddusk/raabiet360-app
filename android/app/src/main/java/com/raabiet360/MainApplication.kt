@@ -1,4 +1,4 @@
-package com.raabiet360
+package io.iqsoft.raabiet360app
 
 import android.app.Application
 import com.facebook.react.PackageList

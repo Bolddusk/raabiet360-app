@@ -1,0 +1,31 @@
+export const IMAGES = {
+  CAR: require('./car.jpg'),
+  LOGIN: require('./login.svg'),
+  FORGOT_PASSWORD: require('./forgot-password.svg'),
+};
+
+export const ICONS = {
+  CHEVRONLEFT: require('./arrow-left.svg'),
+  CHEVRON_DOWN: require('./chevron-down.svg'),
+  CALENDAR: require('./calendar.svg'),
+  EMAIL: require('./email.svg'),
+  EDIT: require('./edit.svg'),
+  EYE_OPEN: require('./eye.svg'),
+  EYE_HIDE: require('./eye-slash.svg'),
+  PROFILE: require('./profile.svg'),
+  PIN_CHECK: require('./pin-check.svg'),
+  PICK_UP: require('./pick-up.svg'),
+  PICK_UP_ONE: require('./pick-up-one.svg'),
+  HOME: require('./home.svg'),
+  TICK: require('./tick.svg'),
+  CROSS: require('./cross.svg'),
+  PLUS: require('./plus.svg'),
+  LOGOUT: require('./logout.svg'),
+  DOC_DOLLAR: require('./doc-dollar.svg'),
+  DOC_TIMER: require('./doc-timer.svg'),
+  STATUS_PROGRESS: require('./status-progress.png'),
+  STATUS_COMPLETE: require('./status-complete.png'),
+  STATUS_REJECT: require('./status-reject.png'),
+  DEFAULT_AVATAR: require('./default-profile.png'),
+  LOGO: require('./logo.png'),
+};
