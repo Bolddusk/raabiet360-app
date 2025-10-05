@@ -1,5 +1,6 @@
-export const BASE_URL = 'https://api-raabiet360.shasltd.com/api/';
-// export const BASE_URL = 'http://192.168.217.194:3000/api/';
+// export const BASE_URL = 'https://api-raabiet360.shasltd.com/api/';
+export const BASE_URL = 'http://192.168.217.194:3000/api/';
+// export const BASE_URL = 'http://localhost:3000/api/';
 
 export const API_ENDPOINT = {
   LOGIN: 'v1/auth/login',
@@ -105,4 +106,25 @@ export const API_ENDPOINT = {
     `v1/pickup-requests/assigned-to-me/${id}`,
   UPDATE_PICKUP_REQUEST_STATUS: (id: number) =>
     `v1/pickup-requests/${id}/status`,
+        // Notification endpoints with v1/m/ prefix (global prefix is api/)
+        NOTIFICATIONS: (params?: {
+          page?: number;
+          limit?: number;
+          is_read?: boolean;
+          type?: string;
+        }) => {
+          const queryParams = new URLSearchParams();
+          if (params?.page) queryParams.append('page', params.page.toString());
+          if (params?.limit) queryParams.append('limit', params.limit.toString());
+          if (params?.is_read !== undefined) queryParams.append('is_read', params.is_read.toString());
+          if (params?.type) queryParams.append('type', params.type);
+          return `v1/m/notifications?${queryParams.toString()}`;
+        },
+        NOTIFICATION_MARK_AS_READ: (notificationId: string) =>
+          `v1/m/notifications/${notificationId}/read`,
+        NOTIFICATION_MARK_ALL_AS_READ: 'v1/m/notifications/mark-all-read',
+        NOTIFICATION_CLEAR_ALL: 'v1/m/notifications/clear-all',
+        NOTIFICATION_UNREAD_COUNT: 'v1/m/notifications/unread-count',
+        NOTIFICATION_STATS: 'v1/m/notifications/stats',
+        NOTIFICATION_CREATE: 'v1/m/notifications',
 };

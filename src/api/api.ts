@@ -4,4 +4,5 @@ export * from './ProjectApi';
 export * from './AttendanceApi';
 export * from './PickupApi';
 export * from './CheckInIssueApi';
+export * from './NotificationApi';
 export * from './endpoints';

@@ -6,6 +6,7 @@ export { default as EmptyList } from './EmptyList/EmptyList';
 export { default as Header } from './Header/Header';
 export * from './Loaders';
 export * from './Modals/Modals';
+export * from './NotificationDrawer';
 export { default as TabBar } from './TabBar/TabBar';
 export { default as TextField } from './TextField/TextField';
 export * from './Wrappers';

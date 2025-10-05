@@ -6,6 +6,7 @@ import { RootNavigation } from '@navigation';
 import {
   AuthProvider,
   LocalizationProvider,
+  NotificationProvider,
   PickupProvider,
   StockProvider,
   ThemeProvider,
@@ -17,12 +18,14 @@ const App = () => {
       <ThemeProvider>
         <LocalizationProvider>
           <AuthProvider>
-            <PickupProvider>
-              <StockProvider>
-                <RootNavigation />
-                <FlashMessage position={'bottom'} />
-              </StockProvider>
-            </PickupProvider>
+            <NotificationProvider>
+              <PickupProvider>
+                <StockProvider>
+                  <RootNavigation />
+                  <FlashMessage position={'bottom'} />
+                </StockProvider>
+              </PickupProvider>
+            </NotificationProvider>
           </AuthProvider>
         </LocalizationProvider>
       </ThemeProvider>

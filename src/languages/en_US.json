@@ -190,5 +190,14 @@
   "Message.Confirmation.LogoutSubtitle": "Are you sure you want to log out?",
   "Message.RequestSubmittedTitle": "Request Submitted",
   "Message.RequestSubmittedSubtitle": "Your pickup request has been successfully submitted. You will be notified once it is reviewed or fulfilled.",
-  "Message.LoggingOut": "Logging out"
+  "Message.LoggingOut": "Logging out",
+  "Label.Notifications": "Notifications",
+  "Label.NoNotifications": "No notifications",
+  "Label.MarkAllAsRead": "Mark all as read",
+  "Label.ClearAll": "Clear all",
+  "Label.Refresh": "Refresh",
+  "Notification.NewStockRequest": "New Stock Request",
+  "Notification.PickupCompleted": "Pickup Completed",
+  "Notification.CheckInReminder": "Check-in Reminder",
+  "Notification.SystemMaintenance": "System Maintenance"
 }

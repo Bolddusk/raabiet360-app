@@ -182,5 +182,14 @@
   "Message.Confirmation.LogoutSubtitle": "Êtes-vous sûr de vouloir vous déconnecter ?",
   "Message.RequestSubmittedTitle": "Demande soumise",
   "Message.RequestSubmittedSubtitle": "Votre demande de ramassage a été soumise avec succès. Vous serez averti dès qu'elle sera examinée ou satisfaite.",
-  "Message.LoggingOut": "Déconnexion"
+  "Message.LoggingOut": "Déconnexion",
+  "Label.Notifications": "Notifications",
+  "Label.NoNotifications": "Aucune notification",
+  "Label.MarkAllAsRead": "Tout marquer comme lu",
+  "Label.ClearAll": "Tout effacer",
+  "Label.Refresh": "Actualiser",
+  "Notification.NewStockRequest": "Nouvelle demande de stock",
+  "Notification.PickupCompleted": "Ramassage terminé",
+  "Notification.CheckInReminder": "Rappel d'enregistrement",
+  "Notification.SystemMaintenance": "Maintenance système"
 }

@@ -1,12 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Animated, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { ICONS } from '@assets/svg';
 import { DATA } from '@constant';
-import { useLocalization, useTheme } from '@providers';
+import { useLocalization, useTheme, useNotifications } from '@providers';
 import { ACTIVE_OPACITY, iconSize } from '@styles/theme';
 import { HeaderProps, LanguageCode } from '@types';
+import { NotificationDrawer } from '@shared/components';
 import { styles } from './Header.styles';
 
 const IconSize = iconSize(0.05);
@@ -31,7 +32,10 @@ const Header = (props: HeaderProps) => {
   const { goBack } = useNavigation<any>();
   const { THEME_COLOR } = useTheme();
   const { changeLanguage, currentLanguage } = useLocalization();
+  const { unreadCount } = useNotifications();
   const Styles = styles({ THEME_COLOR });
+  
+  const [isNotificationDrawerVisible, setIsNotificationDrawerVisible] = useState(false);
 
   const langIndex = currentLanguage === 'fr_CA' ? 1 : 0;
   const pillAnim = useRef(new Animated.Value(langIndex)).current;
@@ -49,6 +53,15 @@ const Header = (props: HeaderProps) => {
       await changeLanguage(code);
     }
   };
+
+  const handleNotificationPress = () => {
+    setIsNotificationDrawerVisible(true);
+  };
+
+  const handleCloseNotificationDrawer = () => {
+    setIsNotificationDrawerVisible(false);
+  };
+
 
   return (
     <View style={[Styles.headerContainer, headerContainerStyle]}>
@@ -96,12 +109,31 @@ const Header = (props: HeaderProps) => {
       ) : variant === 'home' ? (
         <>
           <View style={Styles.greetingContainer}>
-            <Text style={Styles.userNameText} numberOfLines={1}>
-              Hi, {userName ?? 'John'}
-            </Text>
-            <Text style={Styles.greetingText} numberOfLines={1}>
-              {t('Label.WelcomeBack')}
-            </Text>
+            <View style={Styles.greetingTextContainer}>
+              <Text style={Styles.userNameText} numberOfLines={1}>
+                Hi, {userName ?? 'John'}
+              </Text>
+              <Text style={Styles.greetingText} numberOfLines={1}>
+                {t('Label.WelcomeBack')}
+              </Text>
+            </View>
+            <TouchableOpacity
+              style={Styles.notificationButton}
+              onPress={handleNotificationPress}
+              activeOpacity={ACTIVE_OPACITY}>
+              <ICONS.BELL.default
+                width={IconSize}
+                height={IconSize}
+                color={THEME_COLOR.white}
+              />
+              {unreadCount > 0 && (
+                <View style={Styles.notificationBadge}>
+                  <Text style={Styles.notificationBadgeText}>
+                    {unreadCount > 99 ? '99+' : unreadCount}
+                  </Text>
+                </View>
+              )}
+            </TouchableOpacity>
           </View>
 
           <View style={Styles.actionsContainer}>
@@ -137,6 +169,11 @@ const Header = (props: HeaderProps) => {
           </View>
         </>
       ) : null}
+      
+      <NotificationDrawer
+        isVisible={isNotificationDrawerVisible}
+        onClose={handleCloseNotificationDrawer}
+      />
     </View>
   );
 };

@@ -28,4 +28,7 @@ export const ICONS = {
   STATUS_REJECT: require('./status-reject.png'),
   DEFAULT_AVATAR: require('./default-profile.png'),
   LOGO: require('./logo.png'),
+  BELL: require('./bell.svg'),
+  READ: require('./read.svg'),
+  REFRESH: require('./refresh.svg'),
 };

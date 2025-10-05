@@ -41,6 +41,12 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     greetingContainer: {
       flex: 1,
       paddingRight: SIZES.wp_1,
+      ...commonStyles.horizontalView,
+      justifyContent: 'space-between',
+      alignItems: 'center',
+    },
+    greetingTextContainer: {
+      flex: 1,
     },
     userNameText: {
       ...TEXT_STYLE.h2,
@@ -84,5 +90,29 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     labelActive: {
       color: THEME_COLOR.black,
       ...TEXT_STYLE.paragraphSmall,
+    },
+    notificationButton: {
+      position: 'relative',
+      padding: SIZES.wp_2,
+      borderRadius: 20,
+      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    },
+    notificationBadge: {
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      backgroundColor: THEME_COLOR.error || '#FF4444',
+      borderRadius: 10,
+      minWidth: 20,
+      height: 20,
+      ...commonStyles.center,
+      borderWidth: 2,
+      borderColor: THEME_COLOR.white,
+    },
+    notificationBadgeText: {
+      color: THEME_COLOR.white,
+      fontSize: 10,
+      fontWeight: 'bold',
+      textAlign: 'center',
     },
   });

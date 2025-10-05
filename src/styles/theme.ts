@@ -27,6 +27,10 @@ const LIGHT_COLOR = {
   red: '#FF0004',
   green: '#44BF53',
   yellow100: '#BAB710',
+  error: '#FF4444',
+  border: '#E5E5E5',
+  lightGray: '#F5F5F5',
+  lightBlue: '#F0F8FF',
 
   blackTransparent: 'rgba(0, 0, 0, 0.5)',
 };
@@ -47,6 +51,10 @@ const DARK_COLOR = {
   red: '#FF0004',
   green: '#44BF53',
   yellow100: '#BAB710',
+  error: '#FF4444',
+  border: '#E5E5E5',
+  lightGray: '#F5F5F5',
+  lightBlue: '#F0F8FF',
 
   blackTransparent: 'rgba(0, 0, 0, 0.5)',
 };

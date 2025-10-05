@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../fnp-web-backend"
+		},
+		{
+			"path": "../fnp-web-frontend"
+		}
+	],
+	"settings": {}
+}
