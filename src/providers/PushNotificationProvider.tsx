@@ -13,7 +13,8 @@ const PushNotificationContext = createContext<PushNotificationContextType | unde
 
 export const PushNotificationProvider = ({ children }: { children: ReactNode }) => {
 
-    const { incrementUnreadCount } = useNotifications();
+    // const { incrementUnreadCount } = useNotifications();
+    const {  addNotificationToTop } = useNotifications();
 
     //   Handle notification tap when app is launched from quit state
     const handleQuiteNotificationPress = async (remoteMessage: any) => {
@@ -51,6 +52,8 @@ export const PushNotificationProvider = ({ children }: { children: ReactNode }) 
     // Display notification when app is in foreground
     const handleForegroundNotification = (remoteMessage: any) => {
         const { notification, data } = remoteMessage;
+        console.log("DESTRUCT DATA 1 data",data)
+        console.log("DESTRUCT DATA 2",notification)
         notifee.displayNotification({
             id: Date.now().toString(),
             title: notification?.title,
@@ -100,9 +103,25 @@ export const PushNotificationProvider = ({ children }: { children: ReactNode }) 
     useEffect(() => {
         const unsubscribeMessage = messaging().onMessage(async remoteMessage => {
             handleForegroundNotification(remoteMessage);
-
-            incrementUnreadCount();
-        });
+          
+            const { notification, data } = remoteMessage;
+          
+            const newNotification = {
+              id: Date.now(), 
+              receiver_id: Number(data?.receiverId ?? 0),
+              title: notification?.title || 'New Notification',
+              message: notification?.body || '',
+              type: 'info', 
+              is_read: false,
+              data: data || {},
+              created_at: new Date().toISOString(),
+              updated_at: new Date().toISOString(),
+            };
+          
+            addNotificationToTop(newNotification);
+        
+          });
+          
 
         // Notifee event listener
         const eventListener = notifee.onForegroundEvent(({ type, detail }) => {
@@ -115,7 +134,7 @@ export const PushNotificationProvider = ({ children }: { children: ReactNode }) 
             unsubscribeMessage();
             eventListener();
         };
-    }, [incrementUnreadCount]);
+    }, [addNotificationToTop]);
 
     const value: PushNotificationContextType = {
         clearAllNotifications,

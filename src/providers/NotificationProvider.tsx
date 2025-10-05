@@ -37,8 +37,7 @@ interface NotificationContextType {
   markAllAsRead: () => Promise<void>;
   clearNotifications: () => Promise<void>;
   getStats: () => Promise<any>;
-  incrementUnreadCount: () => void;
-  removeFcmToken: () => void;
+  addNotificationToTop: (newNotification: any) => void;
 }
 
 const NotificationContext = createContext<NotificationContextType | undefined>(
@@ -99,7 +98,6 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
 
       const token = await messaging().getToken();
       console.log('FCM Token:', token);
-      console.error('T',token)
 
       // Send token to your backend API after generating
       if (userInfo?.id && token) {
@@ -135,10 +133,15 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
     }
   };
 
-  const incrementUnreadCount = useCallback(() => {
-    setUnreadCount(prev => prev + 1);
-  }, []);
+  // const incrementUnreadCount = useCallback(() => {
+  //   setUnreadCount(prev => prev + 1);
+  // }, []);
 
+  const addNotificationToTop = useCallback((newNotification: any) => {
+    setNotifications(prev => [newNotification, ...prev]);
+    // setUnreadCount(prev => prev + 1);
+  }, []);
+  
   const removeFcmToken = async () => {
     try {
       const token = await messaging().getToken();
@@ -317,7 +320,7 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
     markAllAsRead,
     clearNotifications,
     getStats,
-    incrementUnreadCount
+    addNotificationToTop
   };
 
   return (
