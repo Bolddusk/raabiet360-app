@@ -76,11 +76,13 @@ const ProjectCard = ({
             text={t('Label.BTForm')}
             onPress={onBTFormPress}
             containerStyle={Styles.button}
+            textStyle={Styles.buttonText}
           />
           <PrimaryButton
             text={t('Label.QForm')}
             onPress={onQFormPress}
             containerStyle={Styles.button}
+            textStyle={Styles.buttonText}
           />
         </View>
       )}

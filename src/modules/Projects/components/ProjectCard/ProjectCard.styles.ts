@@ -96,14 +96,20 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     workerInfo: {},
     actions: {
-      flex: 0.6,
-      justifyContent: 'space-evenly',
-      gap: SIZES.hp_p05,
-      paddingLeft: SIZES.wp_2,
+      flex: 0.4,
+      // justifyContent: 'space-evenly',
+      gap: SIZES.hp_p01,
+      paddingLeft: SIZES.wp_1,
     },
     button: {
-      paddingVertical: SIZES.hp_p05,
-      paddingHorizontal: SIZES.wp_2,
-      borderRadius: 6,
+      paddingVertical: SIZES.hp_p01,
+      paddingHorizontal: SIZES.wp_05,
+      borderRadius: 3,
+      minHeight: 24,
+      marginBottom: SIZES.hp_1,
+    },
+    buttonText: {
+      fontSize: 14,
+      fontWeight: '500',
     },
   });
