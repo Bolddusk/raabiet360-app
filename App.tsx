@@ -24,7 +24,11 @@ const App = () => {
                 <PickupProvider>
                   <StockProvider>
                     <RootNavigation />
-                    <FlashMessage position={'bottom'} />
+                    <FlashMessage 
+                      position={'bottom'} 
+                      duration={3000}
+                      style={{ zIndex: 9999, elevation: 9999 }}
+                    />
                   </StockProvider>
                 </PickupProvider>
               </PushNotificationProvider>

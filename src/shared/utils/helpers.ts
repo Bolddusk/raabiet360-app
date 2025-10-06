@@ -209,6 +209,7 @@ export const showFlash = ({
     type,
     icon,
     floating,
+    duration: 3000,
     titleStyle: { ...TEXT_STYLE.paragraph },
     textStyle: { ...TEXT_STYLE.input },
   });

@@ -23,6 +23,7 @@ const RequestCard: React.FC<RequestCardProps> = ({
   const { t } = useTranslation();
   const Styles = styles({ THEME_COLOR });
 
+
   const getStatusColor = (status: Worker['status']) => {
     switch (status) {
       case WorkerStatus.IN_PROGRESS:
@@ -50,24 +51,16 @@ const RequestCard: React.FC<RequestCardProps> = ({
   };
 
   const getStatusText = (status: Worker['status']) => {
-    // Function to map API status values to translation keys
-    const getStatusTranslationKey = (status: string): string => {
-      const statusMap: Record<string, string> = {
-        'pending': 'Button.Label.Pending',
-        'in_progress': 'Button.Label.InProgress',
-        'completed': 'Button.Label.Completed',
-        'rejected': 'Button.Label.Rejected',
-        // Fallback for any other status values
-        'Pending': 'Button.Label.Pending',
-        'In-Progress': 'Button.Label.InProgress',
-        'Completed': 'Button.Label.Completed',
-        'Rejected': 'Button.Label.Rejected',
-      };
-      
-      return statusMap[status] || 'Button.Label.Pending';
+    // Simple function to format status: capitalize and replace underscores with spaces
+    const formatStatus = (status: string): string => {
+      return status
+        .replace(/_/g, ' ')  // Replace underscores with spaces
+        .split(' ')          // Split into words
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize each word
+        .join(' ');          // Join back with spaces
     };
 
-    return t(getStatusTranslationKey(status));
+    return formatStatus(status);
   };
 
   const getRequestTypeLabel = (requestType: string) => {

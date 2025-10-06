@@ -102,10 +102,10 @@ const DriverPickupContainer = () => {
           key={`${selectedWorker.id}-${selectedWorker.notes || 'no-notes'}`}
           visible={modalVisible}
           workerInfo={selectedWorker}
+          type="pickup"
           onClose={closeModal}
           onPrimaryAction={closeModal}
           onStatusUpdate={updateRequestStatus}
-          type="pickup"
         />
       )}
     </SafeAreaViewWrapper>

@@ -1,4 +1,4 @@
-import { FlatList, View, Text } from 'react-native';
+import { FlatList, View, Text, RefreshControl } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { ICONS } from '@assets/svg';
@@ -55,6 +55,7 @@ const WorkerStockContainer = () => {
     selectedRequest,
     openModal,
     closeModal,
+    loadStockRequests,
   } = useWorkerStock();
 
   return (
@@ -76,8 +77,6 @@ const WorkerStockContainer = () => {
 
           {activeTab === TOP_TABS_REQUESTS.RECENT && (
             <>
-              {console.log('🔍 [UI] filteredRequests:', filteredRequests)}
-              {console.log('🔍 [UI] filteredRequests length:', filteredRequests?.length)}
               {loadingRequests ? (
                 <View style={Styles.emptyContainer}>
                   <Text style={Styles.emptyText}>Loading stock requests...</Text>
@@ -86,23 +85,26 @@ const WorkerStockContainer = () => {
                 <FlatList
                   data={filteredRequests}
                   keyExtractor={item => item.id?.toString() || item.request_id?.toString() || Math.random().toString()}
-                  renderItem={({ item }) => {
-                    console.log('🔍 [UI] Rendering item:', item);
-                    console.log('🔍 [UI] Item status:', item.status);
-                    console.log('🔍 [UI] Translation key would be:', `Button.Label.${item.status}`);
-                    return (
-                      <RequestCard
-                        request={item}
-                        type="stock"
-                        onPressDetail={async (request) => await openModal(request)}
-                      />
-                    );
-                  }}
+                  renderItem={({ item }) => (
+                    <RequestCard
+                      request={item}
+                      type="stock"
+                      onPressDetail={async (request) => await openModal(request)}
+                    />
+                  )}
                   ItemSeparatorComponent={() => (
                     <View style={Styles.itemSeparator} />
                   )}
                   contentContainerStyle={Styles.listContainer}
                   showsVerticalScrollIndicator={false}
+                  refreshControl={
+                    <RefreshControl
+                      refreshing={loadingRequests}
+                      onRefresh={loadStockRequests}
+                      colors={[THEME_COLOR.primary]}
+                      tintColor={THEME_COLOR.primary}
+                    />
+                  }
                 />
               ) : (
                 <View style={Styles.emptyContainer}>

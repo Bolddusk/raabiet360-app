@@ -161,24 +161,7 @@ export const useWorkerStock = () => {
     const createdDate = new Date(apiRequest.created_at);
     const requestDateTime = new Date(apiRequest.request_date_time);
     
-    // Map status to match translation keys in en_US.json
-    const mapStatus = (status: string) => {
-      switch (status.toLowerCase()) {
-        case 'pending':
-          return 'Pending';
-        case 'in_progress':
-        case 'in-progress':
-          return 'InProgress';
-        case 'completed':
-          return 'Completed';
-        case 'cancelled':
-        case 'canceled':
-          return 'Cancelled';
-        default:
-          // Capitalize first letter for other statuses
-          return status.charAt(0).toUpperCase() + status.slice(1).toLowerCase();
-      }
-    };
+    // Pass raw status to RequestCard component - it will handle formatting
     
     return {
       id: apiRequest.id.toString(),
@@ -190,7 +173,7 @@ export const useWorkerStock = () => {
       project: apiRequest.project_name || 'Unknown Project',
       time: createdDate.toLocaleTimeString(),
       date: createdDate.toLocaleDateString(),
-      status: mapStatus(apiRequest.status),
+      status: apiRequest.status, // Pass raw status - RequestCard will format it
       quantity: apiRequest.items?.length?.toString() || '0',
       item: 'stock_request',
       // Include items directly for modal display

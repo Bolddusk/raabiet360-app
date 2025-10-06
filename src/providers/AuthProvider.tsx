@@ -28,38 +28,38 @@ export const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   async config => {
     try {
-      console.log(
-        '🔔 Axios interceptor - adding auth token to request:',
-        config.url,
-      );
+      // console.log(
+      //   '🔔 Axios interceptor - adding auth token to request:',
+      //   config.url,
+      // );
 
       // Get token from keychain
       const savedAuth = await Keychain.getGenericPassword({
         service: KEYS.AUTH,
       });
 
-      console.log('🔔 Keychain auth data:', savedAuth ? 'Present' : 'Missing');
+      // console.log('🔔 Keychain auth data:', savedAuth ? 'Present' : 'Missing');
 
       if (savedAuth) {
         const parsed = JSON.parse(savedAuth.password);
-        console.log('🔔 Parsed auth data:', {
-          hasAccessToken: !!parsed.accessToken,
-          tokenPreview: parsed.accessToken
-            ? parsed.accessToken.substring(0, 20) + '...'
-            : 'No token',
-        });
+        // console.log('🔔 Parsed auth data:', {
+        //   hasAccessToken: !!parsed.accessToken,
+        //   tokenPreview: parsed.accessToken
+        //     ? parsed.accessToken.substring(0, 20) + '...'
+        //     : 'No token',
+        // });
 
         if (parsed.accessToken) {
           config.headers.Authorization = `Bearer ${parsed.accessToken}`;
-          console.log('🔔 Authorization header added to request');
+          // console.log('🔔 Authorization header added to request');
         } else {
-          console.log('🔔 No access token found in keychain');
+          // console.log('🔔 No access token found in keychain');
         }
       } else {
-        console.log('🔔 No auth data found in keychain');
+        // console.log('🔔 No auth data found in keychain');
       }
     } catch (error) {
-      console.log('🔔 Error getting auth token for interceptor:', error);
+      // console.log('🔔 Error getting auth token for interceptor:', error);
     }
 
     return config;
@@ -194,7 +194,7 @@ export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
   const logout = useCallback(async () => {
     try {
       const token = await messaging().getToken();
-      console.log('Removing FCM Token:', token);
+      // console.log('Removing FCM Token:', token);
   
       await notificationApi.removeUserToken({
         token,

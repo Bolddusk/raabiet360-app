@@ -123,6 +123,10 @@ export const PickupProvider: React.FC<ProviderProps> = ({ children }) => {
         setSelectedWorker(prev => (prev ? { ...prev, status: newStatus } : null));
       }
       
+      // Close the modal after successful status update
+      setModalVisible(false);
+      setSelectedWorker(null);
+      
       console.log(`✅ Status update completed for request ${requestId}`);
     } catch (error) {
       console.error('❌ Error updating pickup request status:', error);

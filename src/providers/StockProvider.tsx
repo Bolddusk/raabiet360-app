@@ -167,7 +167,6 @@ export const StockProvider: React.FC<ProviderProps> = ({ children }) => {
           totalPages = response.data.totalPages;
           currentPage++;
           
-          console.log(`✅ Page ${currentPage - 1} loaded: ${response.data.requests.length} requests`);
         } else {
           break;
         }
@@ -240,13 +239,8 @@ export const StockProvider: React.FC<ProviderProps> = ({ children }) => {
       const response = await getStockRequests(requestParams, authData.accessToken);
 
       if (response.success) {
-        console.log('📊 API Response:', {
-          totalRequests: response.data.total,
-          currentPage: response.data.page,
-          limit: response.data.limit,
-          totalPages: response.data.totalPages,
-          requestsReturned: response.data.requests.length
-        });
+        // Log the API response for debugging
+        console.log('🔍 PULL-TO-REFRESH API RESPONSE:', response);
         
         // Update pagination state
         setCurrentPage(response.data.page);
@@ -257,15 +251,17 @@ export const StockProvider: React.FC<ProviderProps> = ({ children }) => {
         setStockRequests(response.data.requests);
         // Convert to WorkerRequest format for compatibility
         const convertedRequests = response.data.requests.map(convertStockRequestToWorkerRequest);
+        
+        
         setWorkerRequests(convertedRequests);
         
         // Log if there are more pages available
         if (response.data.totalPages > 1) {
-          console.log('⚠️ There are more pages available:', {
-            totalPages: response.data.totalPages,
-            currentPage: response.data.page,
-            totalRequests: response.data.total
-          });
+          // console.log('⚠️ There are more pages available:', {
+          //   totalPages: response.data.totalPages,
+          //   currentPage: response.data.page,
+          //   totalRequests: response.data.total
+          // });
         }
       }
     } catch (error: any) {
@@ -298,17 +294,17 @@ export const StockProvider: React.FC<ProviderProps> = ({ children }) => {
       return requests; // No role filtering, return all requests
     }
     
-    console.log('🔍 Filtering requests by role:', {
-      totalRequests: requests.length,
-      allowedRoles: allowedRoles,
-      sampleRequest: requests[0] ? {
-        id: requests[0].id,
-        creator: requests[0].creator,
-        hasRole: !!requests[0].creator?.role,
-        hasUserRoles: !!requests[0].creator?.user_roles,
-        userRolesLength: requests[0].creator?.user_roles?.length || 0
-      } : 'No requests'
-    });
+    // console.log('🔍 Filtering requests by role:', {
+    //   totalRequests: requests.length,
+    //   allowedRoles: allowedRoles,
+    //   sampleRequest: requests[0] ? {
+    //     id: requests[0].id,
+    //     creator: requests[0].creator,
+    //     hasRole: !!requests[0].creator?.role,
+    //     hasUserRoles: !!requests[0].creator?.user_roles,
+    //     userRolesLength: requests[0].creator?.user_roles?.length || 0
+    //   } : 'No requests'
+    // });
     
     const filtered = requests.filter(request => {
       // Check if the request has creator role information
@@ -326,23 +322,23 @@ export const StockProvider: React.FC<ProviderProps> = ({ children }) => {
       );
       
       if (requests.length <= 3) { // Only log for first few requests to avoid spam
-        console.log('🔍 Role check:', {
-          requestId: request.id,
-          creatorRole: creatorRole,
-          allowedRoles: allowedRoles,
-          isAllowed: isAllowed,
-          creator: request.creator
-        });
+        // console.log('🔍 Role check:', {
+        //   requestId: request.id,
+        //   creatorRole: creatorRole,
+        //   allowedRoles: allowedRoles,
+        //   isAllowed: isAllowed,
+        //   creator: request.creator
+        // });
       }
       
       return isAllowed;
     });
     
-    console.log('✅ Filtering result:', {
-      originalCount: requests.length,
-      filteredCount: filtered.length,
-      allowedRoles: allowedRoles
-    });
+    // console.log('✅ Filtering result:', {
+    //   originalCount: requests.length,
+    //   filteredCount: filtered.length,
+    //   allowedRoles: allowedRoles
+    // });
     
     return filtered;
   };
@@ -461,57 +457,21 @@ export const StockProvider: React.FC<ProviderProps> = ({ children }) => {
       }
 
       if (response.success) {
-        // Update local state with status and relevant confirmation flags
-        const updateRequest = (request: any) => {
-          const updatedRequest = { ...request, status: newStatus };
-          
-          // Update main notes field if notes were provided
-          if (notes) {
-            updatedRequest.notes = notes;
-          }
-          
-          // Set confirmation flags based on status
-          if (newStatus === 'picked_up') {
-            updatedRequest.driver_pickup_confirmation = true;
-            updatedRequest.pickup_date_time = new Date().toISOString();
-            updatedRequest.pickup_notes = notes;
-          } else if (newStatus === 'in_transit') {
-            updatedRequest.in_transit_notes = notes;
-            updatedRequest.in_transit_date_time = new Date().toISOString();
-            updatedRequest.inTransitAt = new Date().toISOString();
-          } else if (newStatus === 'delivered') {
-            updatedRequest.driver_delivery_confirmation = true;
-            updatedRequest.delivery_date_time = new Date().toISOString();
-            updatedRequest.delivery_notes = notes;
-          } else if (newStatus === 'completed' || newStatus === 'received') {
-            updatedRequest.worker_confirmation = true;
-            updatedRequest.completion_notes = notes;
-            updatedRequest.completedAt = new Date().toISOString();
-          }
-          
-          return updatedRequest;
-        };
-
-        setWorkerRequests(prev =>
-          prev.map(request =>
-            request.id === requestId ? updateRequest(request) : request,
-          ),
-        );
+        // Instead of updating local state, reload the data to get the actual status from the database
+        // This ensures we show the correct request-level status that the backend calculated
+        console.log(`✅ Status update successful: ${requestId} -> ${newStatus}${notes ? ` (notes: ${notes})` : ''}`);
         
-        if (selectedWorker?.id === requestId) {
-          setSelectedWorker(prev => (prev ? updateRequest(prev) : null));
-        }
-
-        // Minimal logging for status update
-        console.log(`✅ Status updated: ${requestId} -> ${newStatus}${notes ? ` (notes: ${notes})` : ''}`);
+        // Reload the stock requests to get the updated status from the database
+        await loadStockRequests();
+        
+        // Close the modal after successful status update
+        setModalVisible(false);
+        setSelectedWorker(null);
         
         showFlash({
           message: `${isReplenishment ? 'Replenishment' : 'Request'} status updated successfully`,
           type: 'success',
         });
-        
-        // Don't reload detailed info after status update to avoid overwriting local state
-        // The local state is already updated with the correct status and timeline data
       }
     } catch (error: any) {
       console.error('❌ Status update error:', error);

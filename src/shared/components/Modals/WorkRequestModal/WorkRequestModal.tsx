@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal, ScrollView, Text, View } from 'react-native';
 
-import { WorkerStatus } from '@constant';
-import { useTheme } from '@providers';
+import { useAuth, useTheme } from '@providers';
 import { PrimaryButton, SecondaryButton, TextField } from '@shared/components';
-import { SIZES, TEXT_STYLE } from '@styles/theme';
 import { WorkerRequest, WorkRequestModalProps } from '@types';
+import { isDriver } from '@utils/roleUtils';
 import { styles } from './WorkRequestModal.styles';
 
 const DetailRow = ({
@@ -115,7 +114,9 @@ const WorkRequestModal: React.FC<WorkRequestModalProps> = ({
 }) => {
   const { THEME_COLOR } = useTheme();
   const { t } = useTranslation();
+  const { userInfo } = useAuth();
   const [isUpdating, setIsUpdating] = useState(false);
+  const [statusNotes, setStatusNotes] = useState('');
 
   if (!workerInfo) {
     return null;
@@ -370,8 +371,9 @@ const WorkRequestModal: React.FC<WorkRequestModalProps> = ({
     }
   };
 
-  // Check if status update section should be shown (for all non-final statuses)
+  // Check if status update section should be shown (only for drivers)
   const shouldShowStatusUpdate = (request: WorkerRequest) => {
+    const userIsDriver = isDriver(userInfo?.role); // Check if user role contains 'driver'
     const typeCheck = (type === 'stock' || type === 'pickup');
     const notCompleted = !isRequestCompleted(request);
     const statusCheck = (request.status === 'pending' || 
@@ -381,20 +383,11 @@ const WorkRequestModal: React.FC<WorkRequestModalProps> = ({
        request.status === 'in_progress' || // Added for pickup requests
        request.status === 'delivered');
     
-    const result = typeCheck && notCompleted && statusCheck;
-    
-    console.log(`🔍 shouldShowStatusUpdate: typeCheck=${typeCheck}, notCompleted=${notCompleted}, statusCheck=${statusCheck}, result=${result}`);
-    
-    return result;
+    return userIsDriver && typeCheck && notCompleted && statusCheck;
   };
 
   const Styles = styles({ THEME_COLOR });
 
-  // Debug button visibility - after all functions are defined
-  console.log(`📱 Modal: ${isReplenishment ? 'Replenishment' : isPickupRequest ? 'Pickup' : 'Stock'} request ${workerInfo.id} - Status: ${workerInfo.status}`);
-  console.log(`🔘 Buttons: Pickup:${canConfirmPickup(workerInfo)} InTransit:${canConfirmInTransit(workerInfo)} Delivery:${canConfirmDelivery(workerInfo)} Complete:${canConfirmReceipt(workerInfo)}`);
-  console.log(`🔍 Status Debug: workerInfo.status="${workerInfo.status}", isPickupRequest=${isPickupRequest}`);
-  console.log(`🔍 Button Logic: canConfirmPickup=${canConfirmPickup(workerInfo)}, canConfirmInTransit=${canConfirmInTransit(workerInfo)}`);
 
   return (
     <Modal
@@ -511,6 +504,20 @@ const WorkRequestModal: React.FC<WorkRequestModalProps> = ({
               <View style={Styles.sectionContainer}>
                 <Text style={Styles.sectionTitle}>Status Update</Text>
                 <View style={Styles.statusUpdateContainer}>
+                  {/* Status Notes Input - Only for stock requests */}
+                  {type === 'stock' && (
+                    <View style={Styles.notesInputContainer}>
+                      <TextField
+                        showLabel={true}
+                        label="Status Notes (Optional)"
+                        placeholder="Add any notes about this status update..."
+                        value={statusNotes}
+                        onChangeText={setStatusNotes}
+                        multiline={true}
+                        inputStyle={Styles.notesInput}
+                      />
+                    </View>
+                  )}
                   <View style={Styles.statusButtonsContainer}>
                     {canConfirmPickup(workerInfo) && (
                       <PrimaryButton
@@ -559,9 +566,9 @@ const WorkRequestModal: React.FC<WorkRequestModalProps> = ({
                             await onStatusUpdate(
                               workerInfo.id,
                               'delivered',
-                              statusNotes,
+                              type === 'stock' ? statusNotes : undefined,
                             );
-                            setStatusNotes(''); // Clear notes after update
+                            if (type === 'stock') setStatusNotes('');
                           } finally {
                             setIsUpdating(false);
                           }
@@ -580,9 +587,9 @@ const WorkRequestModal: React.FC<WorkRequestModalProps> = ({
                             await onStatusUpdate(
                               workerInfo.id,
                               isReplenishment ? 'received' : 'completed',
-                              statusNotes,
+                              type === 'stock' ? statusNotes : undefined,
                             );
-                            setStatusNotes(''); // Clear notes after update
+                            if (type === 'stock') setStatusNotes('');
                           } finally {
                             setIsUpdating(false);
                           }
