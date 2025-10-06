@@ -181,15 +181,12 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
           '🔔 Successfully fetched notifications:',
           response.data.notifications.length,
         );
-        // Client-side filter to ensure only notifications for current user are shown
-        const filteredNotifications = response.data.notifications.filter(
-          notification => notification.receiver_id === userInfo?.id,
-        );
+        // Backend already filters by user ID, no need for client-side filtering
         console.log(
-          '🔔 Filtered notifications for current user:',
-          filteredNotifications.length,
+          '🔔 Using notifications from backend (already filtered by user):',
+          response.data.notifications.length,
         );
-        return filteredNotifications;
+        return response.data.notifications;
       }
 
       console.log('🔔 API returned success: false');
@@ -212,13 +209,27 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
     setIsLoading(true);
   
     try {
-      const fetchedNotifications = await fetchNotifications();
-      console.log('Setting notifications:', fetchedNotifications.length);
-      setNotifications(fetchedNotifications);
-  
-      // Update unread count
-      const unread = fetchedNotifications.filter(n => !n.is_read).length;
-      setUnreadCount(unread);
+      // Make direct API call to ensure fresh data
+      const response = await notificationApi.getNotifications({
+        page: 1,
+        limit: 50,
+      });
+
+      console.log('🔔 Refresh API Response:', response);
+
+      if (response.success) {
+        const fetchedNotifications = response.data.notifications;
+        console.log('Setting fresh notifications:', fetchedNotifications.length);
+        setNotifications(fetchedNotifications);
+    
+        // Update unread count
+        const unread = fetchedNotifications.filter(n => !n.is_read).length;
+        setUnreadCount(unread);
+      } else {
+        console.log('🔔 Refresh API returned success: false');
+        setNotifications([]);
+        setUnreadCount(0);
+      }
     } catch (error) {
       console.error('Error in refreshNotifications:', error);
       setNotifications([]);
@@ -226,7 +237,7 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
     } finally {
       setIsLoading(false);
     }
-  }, [fetchNotifications]);
+  }, []);
   
 
   const markAsRead = async (notificationId: string | number) => {
