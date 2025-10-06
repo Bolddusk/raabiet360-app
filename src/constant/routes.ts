@@ -13,6 +13,7 @@ export const enum SCREEN {
   MANAGER_STOCK = 'ManagerStock',
   PROJECTS = 'Projects',
   BT_FORM = 'BTForm',
+  Q_FORM = 'QForm',
   LOCATAR = 'Locator',
 }
 

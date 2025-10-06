@@ -10,6 +10,7 @@ import {
   Locator,
   ManagerStock,
   Projects,
+  QForm,
   ReportCheckIn,
 } from '@screens';
 import BottomTabs from './BottomTabs';
@@ -38,6 +39,7 @@ const AppStack = () => {
       <Screen name={SCREEN.MANAGER_STOCK} component={ManagerStock} />
       <Screen name={SCREEN.PROJECTS} component={Projects} />
       <Screen name={SCREEN.BT_FORM} component={BTForm} />
+      <Screen name={SCREEN.Q_FORM} component={QForm} />
       <Screen name={SCREEN.LOCATAR} component={Locator} />
     </Navigator>
   );

@@ -131,5 +131,8 @@ export const API_ENDPOINT = {
   NOTIFICATION_STATS: 'v1/m/notifications/stats',
   NOTIFICATION_CREATE: 'v1/m/notifications',
   SAVE_USER_TOKEN: 'v1/fcm-tokens/add',
-  REMOVE_USER_TOKEN:'v1/fcm-tokens/remove'
+  REMOVE_USER_TOKEN:'v1/fcm-tokens/remove',
+  // Project Form endpoints
+  PROJECT_BT_FORM_NO_PRICING: (projectId: string | number) => `v1/projects/${projectId}/bt-form-no-pricing`,
+  PROJECT_QUOTATION_NO_PRICING: (projectId: string | number) => `v1/projects/${projectId}/quotation-no-pricing`
 };

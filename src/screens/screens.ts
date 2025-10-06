@@ -10,6 +10,7 @@ export { default as Login } from './Login/Login';
 export { default as ManagerStock } from './ManagerStock/ManagerStock';
 export { default as Profile } from './Profile/Profile';
 export { default as Projects } from './Projects/Projects';
+export { default as QForm } from './QForm/QForm';
 export { default as ReportCheckIn } from './ReportCheckIn/ReportCheckIn';
 export { default as Splash } from './Splash/Splash';
 export { default as WorkerPickup } from './WorkerPickup/WorkerPickup';

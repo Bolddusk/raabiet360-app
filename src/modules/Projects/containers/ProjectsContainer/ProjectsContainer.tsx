@@ -44,8 +44,8 @@ const ProjectsContainer = () => {
           moduleId={item.key_code || item.module_id || item.module_number}
           name={item.customer || item.name}
           location={item?.address || item?.location_address}
-          onBTFormPress={() => handleBTFormPress(item.key_code || item.moduleId)}
-          onQFormPress={() => handleQFormPress(item.key_code || item.moduleId)}
+          onBTFormPress={() => handleBTFormPress(item.id)}
+          onQFormPress={() => handleQFormPress(item.id)}
           role={userInfo?.role?.role_name?.toLowerCase()}
           managerName={managerName}
           status={item.status}

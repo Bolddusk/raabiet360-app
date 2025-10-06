@@ -61,10 +61,11 @@ export const useProjects = () => {
   };
 
   const handleBTFormPress = (id: string) => {
-    navigation.navigate(SCREEN.BT_FORM);
+    navigation.navigate(SCREEN.BT_FORM, { projectId: id });
   };
 
   const handleQFormPress = (id: string) => {
+    navigation.navigate(SCREEN.Q_FORM, { projectId: id });
   };
 
   // Create dynamic filter options from API data
