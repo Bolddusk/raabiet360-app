@@ -97,7 +97,6 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
       await messaging().registerDeviceForRemoteMessages();
 
       const token = await messaging().getToken();
-      console.log('FCM Token:', token);
 
       // Send token to your backend API after generating
       if (userInfo?.id && token) {
@@ -105,7 +104,6 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
           await notificationApi.saveUserToken({
             token: token,
           });
-          console.log('Token successfully sent to API', token);
         } catch (apiError) {
           console.error('Failed to send token to API:', apiError);
         }
@@ -113,14 +111,11 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
 
       // Handle token refresh
       messaging().onTokenRefresh(async newToken => {
-        console.log('Token refreshed:', newToken);
-
         if (userInfo?.id && newToken) {
           try {
             await notificationApi.saveUserToken({
               token: newToken,
             });
-            console.log('✅ Refreshed token successfully sent to API');
           } catch (apiError) {
             console.error('❌ Failed to update refreshed token:', apiError);
           }
@@ -145,14 +140,12 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
   const removeFcmToken = async () => {
     try {
       const token = await messaging().getToken();
-      console.log('Removing FCM Token:', token);
   
       await notificationApi.removeUserToken({
         token,
       });
   
       await messaging().deleteToken();
-      console.log('FCM token removed successfully from device and backend');
     } catch (error) {
       console.error('Failed to remove FCM token:', error);
     }
@@ -161,11 +154,8 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
   // Simple fetch notifications from API
   const fetchNotifications = useCallback(async (): Promise<Notification[]> => {
     try {
-      console.log('🔔 Fetching notifications...');
-
       // Check if user is logged in before making API call
       if (!isLoggedIn) {
-        console.log('🔔 User not logged in, skipping notification fetch');
         return [];
       }
 
@@ -174,38 +164,18 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
         limit: 50,
       });
 
-      console.log('🔔 API Response:', response);
-
       if (response.success) {
-        console.log(
-          '🔔 Successfully fetched notifications:',
-          response.data.notifications.length,
-        );
-        // Backend already filters by user ID, no need for client-side filtering
-        console.log(
-          '🔔 Using notifications from backend (already filtered by user):',
-          response.data.notifications.length,
-        );
         return response.data.notifications;
       }
 
-      console.log('🔔 API returned success: false');
       return [];
     } catch (error: any) {
       console.error('🔔 Failed to fetch notifications:', error);
-      console.error('🔔 Error details:', {
-        message: error.message,
-        response: error.response?.data,
-        status: error.response?.status,
-        url: error.config?.url,
-        method: error.config?.method,
-      });
       return [];
     }
   }, [isLoggedIn, userInfo?.id]);
 
   const refreshNotifications = useCallback(async () => {
-    console.log('refreshNotifications called');
     setIsLoading(true);
   
     try {
@@ -215,18 +185,14 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
         limit: 50,
       });
 
-      console.log('🔔 Refresh API Response:', response);
-
       if (response.success) {
         const fetchedNotifications = response.data.notifications;
-        console.log('Setting fresh notifications:', fetchedNotifications.length);
         setNotifications(fetchedNotifications);
     
         // Update unread count
         const unread = fetchedNotifications.filter(n => !n.is_read).length;
         setUnreadCount(unread);
       } else {
-        console.log('🔔 Refresh API returned success: false');
         setNotifications([]);
         setUnreadCount(0);
       }
@@ -290,16 +256,12 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
 
   const clearNotifications = async () => {
     try {
-      console.log('🗑️ Calling backend clearAllNotifications API...');
       const response = await notificationApi.clearAllNotifications();
-      console.log('🗑️ Backend response:', response);
       
       if (response.success) {
-        console.log('✅ Backend successfully cleared notifications');
         setNotifications([]);
         setUnreadCount(0);
       } else {
-        console.error('❌ Backend returned success: false');
         setNotifications([]);
         setUnreadCount(0);
       }
@@ -323,7 +285,6 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
 
   // Load notifications on component mount and when login status changes
   useEffect(() => {
-    console.log('🔔 Loading notifications...', { isLoggedIn });
     if (isLoggedIn) {
       refreshNotifications();
     } else {
