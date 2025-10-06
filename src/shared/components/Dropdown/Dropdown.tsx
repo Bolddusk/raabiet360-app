@@ -74,7 +74,7 @@ const Dropdown: React.FC<DropdownProps> = ({
           {...commonProps}
           value={multiValue}
           onChange={onChange}
-          renderSelectedItem={() => <></>}
+          renderSelectedItem={() => <View />}
           renderItem={(item, selected) => (
             <View
               style={{
