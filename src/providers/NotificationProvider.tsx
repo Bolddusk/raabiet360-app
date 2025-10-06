@@ -279,11 +279,21 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
 
   const clearNotifications = async () => {
     try {
-      await notificationApi.clearAllNotifications();
-      setNotifications([]);
-      setUnreadCount(0);
+      console.log('🗑️ Calling backend clearAllNotifications API...');
+      const response = await notificationApi.clearAllNotifications();
+      console.log('🗑️ Backend response:', response);
+      
+      if (response.success) {
+        console.log('✅ Backend successfully cleared notifications');
+        setNotifications([]);
+        setUnreadCount(0);
+      } else {
+        console.error('❌ Backend returned success: false');
+        setNotifications([]);
+        setUnreadCount(0);
+      }
     } catch (error) {
-      console.error('Failed to clear notifications:', error);
+      console.error('❌ Failed to clear notifications:', error);
       setNotifications([]);
       setUnreadCount(0);
     }

@@ -76,7 +76,13 @@ const NotificationDrawer: React.FC<NotificationDrawerProps> = ({
           text: t('Button.Label.Finish'),
           style: 'destructive',
           onPress: async () => {
-            await clearNotifications();
+            try {
+              console.log('🗑️ Starting clear all notifications...');
+              await clearNotifications();
+              console.log('✅ Clear all notifications completed');
+            } catch (error) {
+              console.error('❌ Failed to clear notifications:', error);
+            }
           },
         },
       ]
@@ -197,44 +203,49 @@ const NotificationDrawer: React.FC<NotificationDrawerProps> = ({
         </TouchableOpacity>
       </View>
       
-      {notifications.length > 0 && (
-        <View style={Styles.headerActions}>
-          <TouchableOpacity
-            onPress={handleMarkAllAsRead}
-            style={[
-              Styles.actionButton,
-              unreadCount === 0 && Styles.disabledActionButton
-            ]}
-            disabled={unreadCount === 0}>
-            <Text style={[
-              Styles.actionButtonText,
-              unreadCount === 0 && Styles.disabledActionButtonText
-            ]}>
-              {t('Label.MarkAllAsRead')}
-            </Text>
-          </TouchableOpacity>
-          
-          <TouchableOpacity
-            onPress={handleClearAll}
-            style={Styles.actionButton}>
-            <Text style={Styles.actionButtonText}>
-              {t('Label.ClearAll')}
-            </Text>
-          </TouchableOpacity>
-          
-          <TouchableOpacity
-            onPress={refreshNotifications}
-            style={[
-              Styles.refreshButton,
-              isLoading && Styles.disabledActionButton
-            ]}
-            disabled={isLoading}>
-            <ICONS.REFRESH.default 
-              color={isLoading ? '#B2B2B2' : '#FFFFFF'} 
-            />
-          </TouchableOpacity>
-        </View>
-      )}
+      <View style={Styles.headerActions}>
+        <TouchableOpacity
+          onPress={handleMarkAllAsRead}
+          style={[
+            Styles.actionButton,
+            (unreadCount === 0 || notifications.length === 0) && Styles.disabledActionButton
+          ]}
+          disabled={unreadCount === 0 || notifications.length === 0}>
+          <Text style={[
+            Styles.actionButtonText,
+            (unreadCount === 0 || notifications.length === 0) && Styles.disabledActionButtonText
+          ]}>
+            {t('Label.MarkAllAsRead')}
+          </Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity
+          onPress={handleClearAll}
+          style={[
+            Styles.actionButton,
+            notifications.length === 0 && Styles.disabledActionButton
+          ]}
+          disabled={notifications.length === 0}>
+          <Text style={[
+            Styles.actionButtonText,
+            notifications.length === 0 && Styles.disabledActionButtonText
+          ]}>
+            {t('Label.ClearAll')}
+          </Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity
+          onPress={refreshNotifications}
+          style={[
+            Styles.refreshButton,
+            isLoading && Styles.disabledActionButton
+          ]}
+          disabled={isLoading}>
+          <ICONS.REFRESH.default 
+            color={isLoading ? '#B2B2B2' : '#FFFFFF'} 
+          />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 
