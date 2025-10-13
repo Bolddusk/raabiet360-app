@@ -33,7 +33,7 @@ const RequestCard: React.FC<RequestCardProps> = ({
       case WorkerStatus.PENDING:
         return '#FF915F';
       default:
-        return THEME_COLOR.black;
+        return THEME_COLOR.black100;
     }
   };
 

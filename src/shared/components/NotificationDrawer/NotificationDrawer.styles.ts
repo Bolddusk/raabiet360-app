@@ -24,7 +24,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
       left: 0,
       width: screenWidth,
       height: screenHeight,
-      backgroundColor: '#FFFFFF',
+      backgroundColor: THEME_COLOR.white,
       shadowColor: '#000000',
       shadowOffset: {
         width: 2,
@@ -42,8 +42,8 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
       paddingHorizontal: SIZES.wp_4,
       paddingBottom: SIZES.hp_1,
       borderBottomWidth: 1,
-      borderBottomColor: '#E5E5E5',
-      backgroundColor: '#FFFFFF',
+      borderBottomColor: THEME_COLOR.border,
+      backgroundColor: THEME_COLOR.white,
     },
     headerTop: {
       ...commonStyles.horizontalView,
@@ -53,7 +53,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     headerTitle: {
       fontSize: 20,
-      color: '#000000',
+      color: THEME_COLOR.black100,
       fontWeight: '700',
     },
     closeButton: {
@@ -156,7 +156,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
       paddingHorizontal: SIZES.wp_4,
       paddingVertical: SIZES.hp_2,
       position: 'relative',
-      backgroundColor: '#FFFFFF',
+      backgroundColor: THEME_COLOR.white,
       minHeight: 80,
       ...commonStyles.horizontalView,
       alignItems: 'flex-start',
@@ -173,7 +173,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
       elevation: 1,
     },
     unreadNotification: {
-      backgroundColor: '#F8FAFC',
+      backgroundColor: THEME_COLOR.primaryLight,
       borderLeftWidth: 4,
       borderLeftColor: THEME_COLOR.primary || '#8085EF',
     },
@@ -193,7 +193,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     notificationTitle: {
       ...TEXT_STYLE.paragraph,
-      color: '#1F2937',
+      color: THEME_COLOR.black100,
       fontWeight: '700',
       flex: 1,
       fontSize: 16,
@@ -201,13 +201,13 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     notificationTime: {
       ...TEXT_STYLE.paragraphSmall,
-      color: '#9CA3AF',
+      color: THEME_COLOR.gray600,
       fontWeight: '500',
       fontSize: 12,
     },
     notificationMessage: {
       ...TEXT_STYLE.paragraphSmall,
-      color: '#4B5563',
+      color: THEME_COLOR.black100,
       lineHeight: 20,
       fontWeight: '400',
       marginBottom: SIZES.hp_1,
@@ -217,7 +217,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
       marginTop: SIZES.hp_1,
       paddingTop: SIZES.hp_1,
       borderTopWidth: 1,
-      borderTopColor: '#E5E7EB',
+      borderTopColor: THEME_COLOR.border,
     },
     dataRow: {
       ...commonStyles.horizontalView,
@@ -226,7 +226,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     notificationDataText: {
       ...TEXT_STYLE.paragraphSmall,
-      color: '#6B7280',
+      color: THEME_COLOR.black100,
       fontSize: 12,
       marginLeft: SIZES.wp_2,
       flex: 1,
@@ -252,7 +252,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     emptyStateText: {
       fontSize: 18,
-      color: '#666666',
+      color: THEME_COLOR.black100,
       textAlign: 'center',
       fontWeight: '600',
       lineHeight: 24,

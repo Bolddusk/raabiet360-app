@@ -22,7 +22,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     title: {
       ...TEXT_STYLE.paragraph,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
     },
     location: {
       ...TEXT_STYLE.paragraphSmall,
@@ -30,7 +30,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     shiftingHours: {
       ...TEXT_STYLE.paragraphSmall,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       marginTop: SIZES.hp_p05,
     },
     hours: {
@@ -38,7 +38,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     dateTime: {
       ...TEXT_STYLE.paragraphSmall,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       marginBottom: SIZES.hp_1,
     },
     checkInButton: {
@@ -59,11 +59,11 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     checkLabel: {
       ...TEXT_STYLE.paragraphSmall,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
     },
     checkTime: {
       ...TEXT_STYLE.paragraphSmall,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
     },
     timeContainer: {
       marginTop: SIZES.hp_1,
@@ -75,7 +75,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     timeLabel: {
       ...TEXT_STYLE.paragraphSmall,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       fontSize: 12,
       fontWeight: '600',
       marginRight: SIZES.wp_2,

@@ -32,7 +32,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     name: {
       ...TEXT_STYLE.paragraph1,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       flex: 1,
       marginRight: 8,
     },
@@ -44,6 +44,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
       ...TEXT_STYLE.paragraphSmall,
       fontWeight: '600',
       fontSize: 12,
+      color: THEME_COLOR.black100,
     },
     timeText: {
       ...TEXT_STYLE.paragraphSmall,
@@ -74,14 +75,14 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     idText: {
       ...TEXT_STYLE.paragraphSmall,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       fontSize: 11,
       fontWeight: '600',
       marginTop: 2,
     },
     address: {
       ...TEXT_STYLE.paragraphSmall,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       fontWeight: '600',
     },
     warehouse: {
@@ -106,7 +107,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     requestTime: {
       ...TEXT_STYLE.paragraphSmall,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       marginBottom: SIZES.hp_1,
     },
     statusContainer: {
@@ -145,5 +146,6 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     buttonText: {
       ...TEXT_STYLE.body2,
+      color: THEME_COLOR.black100,
     },
   });

@@ -15,7 +15,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     label: {
       ...TEXT_STYLE.paragraph1,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
     },
     toggleContainer: {
       flexDirection: 'row',
@@ -33,9 +33,9 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     toggleText: {
       ...TEXT_STYLE.paragraphSmall,
-      color: THEME_COLOR.white,
+      color: THEME_COLOR.white100,
     },
     activeToggleText: {
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.primary,
     },
   });

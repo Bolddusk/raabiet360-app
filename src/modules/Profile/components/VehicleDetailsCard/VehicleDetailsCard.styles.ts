@@ -14,7 +14,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     cardTitle: {
       ...TEXT_STYLE.paragraph1,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       marginBottom: SIZES.hp_p15,
     },
     contentWrapper: {
@@ -42,7 +42,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     detailValue: {
       ...TEXT_STYLE.paragraph,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
     },
     vehicleImageContainer: {
       width: SIZES.wp_30,

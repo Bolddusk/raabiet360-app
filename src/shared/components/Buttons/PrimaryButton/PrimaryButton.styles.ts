@@ -16,7 +16,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     text: {
       textAlign: 'center',
-      color: THEME_COLOR.white,
+      color: THEME_COLOR.white100,
       ...TEXT_STYLE.buttonPrimary,
     },
   });

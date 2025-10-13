@@ -28,7 +28,7 @@ const InfoCard: React.FC<InfoCardProps> = ({
             <Icon
               width={IconSize}
               height={IconSize}
-              color={THEME_COLOR.black}
+              color={THEME_COLOR.black100}
             />
           )}
           <Text style={Styles.primaryLabel}>{label}</Text>

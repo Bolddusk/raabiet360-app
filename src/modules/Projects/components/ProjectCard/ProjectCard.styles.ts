@@ -26,7 +26,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     title: {
       ...TEXT_STYLE.body1,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       fontWeight: '700',
       marginBottom: SIZES.hp_p05,
       fontSize: 16,
@@ -74,7 +74,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     shift: {
       ...TEXT_STYLE.paragraphSmall,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
     },
     managerLabel: {
       ...TEXT_STYLE.paragraphSmall,
@@ -91,7 +91,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     managerText: {
       ...TEXT_STYLE.paragraphSmall,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       fontWeight: '500',
     },
     workerInfo: {},

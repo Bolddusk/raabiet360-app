@@ -14,7 +14,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     title: {
       ...TEXT_STYLE.h3,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
     },
     fieldSpacing: {
       marginTop: SIZES.hp_2,

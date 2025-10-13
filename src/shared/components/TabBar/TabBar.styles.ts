@@ -27,7 +27,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     tabText: {
       ...TEXT_STYLE.paragraph1,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
     },
     activeTabText: {
       color: THEME_COLOR.white,

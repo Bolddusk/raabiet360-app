@@ -7,7 +7,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
   StyleSheet.create({
     label: {
       ...TEXT_STYLE.paragraph1,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
     },
     errorLabelContainer: {
       ...commonStyles.horizontalView,
@@ -30,7 +30,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     input: {
       flex: 1,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       height: SIZES.hp_6,
       ...TEXT_STYLE.input,
     },

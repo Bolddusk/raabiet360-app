@@ -8,7 +8,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     container: {},
     label: {
       ...TEXT_STYLE.paragraph1,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
     },
     labelSpacing: {
       marginBottom: SIZES.hp_1,
@@ -40,15 +40,24 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
       backgroundColor: THEME_COLOR.yellow100,
     },
     dropdownText: {
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       ...TEXT_STYLE.paragraphSmall,
+      fontWeight: '500',
     },
     dropdownPlaceholder: {
       color: THEME_COLOR.gray,
       ...TEXT_STYLE.paragraphSmall,
     },
     itemTextStyle: {
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       ...TEXT_STYLE.input,
+    },
+    dropdownItemContainer: {
+      backgroundColor: THEME_COLOR.white,
+      borderBottomWidth: 0.5,
+      borderBottomColor: THEME_COLOR.border,
+    },
+    selectedItemContainer: {
+      backgroundColor: THEME_COLOR.lightGray,
     },
   });

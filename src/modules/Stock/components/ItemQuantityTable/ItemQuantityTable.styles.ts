@@ -27,20 +27,20 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     tableHeaderCell: {
       ...TEXT_STYLE.paragraph,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       paddingBottom: SIZES.hp_p05,
       paddingHorizontal: SIZES.wp_1,
     },
     tableCell: {
       ...TEXT_STYLE.paragraphSmall,
-      color: THEME_COLOR.gray,
+      color: THEME_COLOR.black100,
       paddingVertical: SIZES.hp_p05,
       paddingHorizontal: SIZES.wp_1,
     },
     quantityInput: {
       height: SIZES.hp_4,
       ...TEXT_STYLE.paragraphSmall,
-      color: THEME_COLOR.gray,
+      color: THEME_COLOR.black100,
       paddingVertical: 0,
       paddingHorizontal: SIZES.wp_1,
     },

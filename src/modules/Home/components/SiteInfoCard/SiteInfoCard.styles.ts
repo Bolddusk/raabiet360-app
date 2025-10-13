@@ -29,7 +29,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     title: {
       ...TEXT_STYLE.body1,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
     },
     sub: {
       marginTop: SIZES.hp_1,
@@ -39,6 +39,6 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     text: {
       marginTop: SIZES.hp_p05,
       ...TEXT_STYLE.paragraph,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
     },
   });

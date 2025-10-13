@@ -35,7 +35,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     sectionTitle: {
       ...TEXT_STYLE.h4,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       marginBottom: SIZES.hp_1,
       borderBottomWidth: 1,
       borderBottomColor: THEME_COLOR.gray,
@@ -50,7 +50,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     detailLabel: {
       ...TEXT_STYLE.paragraph,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       fontWeight: '600',
     },
     detailValue: {
@@ -82,7 +82,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     tableHeaderCell: {
       flex: 1,
       ...TEXT_STYLE.paragraph,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       fontWeight: '600',
     },
     tableHeaderCellName: {
@@ -127,6 +127,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
       ...TEXT_STYLE.paragraph,
       fontWeight: '600',
       flex: 1,
+      color: THEME_COLOR.black100,
     },
     statusBadge: {
       paddingHorizontal: SIZES.wp_2,
@@ -136,17 +137,21 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     statusBadgeText: {
       ...TEXT_STYLE.caption,
       fontWeight: '600',
+      color: THEME_COLOR.black100,
     },
     timelineUser: {
       ...TEXT_STYLE.paragraph,
       marginBottom: SIZES.hp_p02,
+      color: THEME_COLOR.black100,
     },
     timelineUserBold: {
       fontWeight: '600',
+      color: THEME_COLOR.black100,
     },
     timelineTime: {
       ...TEXT_STYLE.caption,
       marginBottom: SIZES.hp_p05,
+      color: THEME_COLOR.black100,
     },
     buttonsWrapper: {
       position: 'absolute',
@@ -180,7 +185,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     statusUpdateLabel: {
       ...TEXT_STYLE.paragraph,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       marginBottom: 2, // Further reduced - minimal space
       fontWeight: '500',
     },

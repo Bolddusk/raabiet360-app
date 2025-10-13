@@ -6,7 +6,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: THEME_COLOR.gray100,
+      backgroundColor: THEME_COLOR.primaryLight,
       borderRadius: 40,
       overflow: 'hidden',
     },

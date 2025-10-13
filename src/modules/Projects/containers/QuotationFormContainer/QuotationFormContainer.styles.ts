@@ -35,7 +35,7 @@ export const styles = ({ THEME_COLOR }: any) =>
     },
     formSubtitle: {
       fontSize: 12,
-      color: THEME_COLOR.textSecondary,
+      color: THEME_COLOR.black100,
     },
 
     // Quotation Information Grid
@@ -55,13 +55,13 @@ export const styles = ({ THEME_COLOR }: any) =>
     infoLabel: {
       fontSize: 10,
       fontWeight: 'bold',
-      color: THEME_COLOR.text,
+      color: THEME_COLOR.black100,
       minWidth: 80,
       flexShrink: 0,
     },
     infoValue: {
       fontSize: 10,
-      color: THEME_COLOR.text,
+      color: THEME_COLOR.black100,
       textAlign: 'right',
       maxWidth: 120,
       flex: 1,
@@ -84,13 +84,13 @@ export const styles = ({ THEME_COLOR }: any) =>
     clientLabel: {
       fontSize: 10,
       fontWeight: 'bold',
-      color: THEME_COLOR.text,
+      color: THEME_COLOR.black100,
       minWidth: 80,
       flexShrink: 0,
     },
     clientValue: {
       fontSize: 10,
-      color: THEME_COLOR.text,
+      color: THEME_COLOR.black100,
       textAlign: 'right',
       maxWidth: 120,
       flex: 1,
@@ -105,7 +105,7 @@ export const styles = ({ THEME_COLOR }: any) =>
     },
     addressValue: {
       fontSize: 10,
-      color: THEME_COLOR.text,
+      color: THEME_COLOR.black100,
       textAlign: 'left',
       lineHeight: 13,
       marginTop: 2,
@@ -180,7 +180,7 @@ export const styles = ({ THEME_COLOR }: any) =>
     },
     tableCell: {
       fontSize: 10,
-      color: THEME_COLOR.text,
+      color: THEME_COLOR.black100,
       textAlign: 'left',
       paddingVertical: 6,
       paddingHorizontal: 4,
@@ -194,7 +194,7 @@ export const styles = ({ THEME_COLOR }: any) =>
     tableCellCategoryDescription: {
       flex: 2.5,
       fontSize: 10,
-      color: THEME_COLOR.text,
+      color: THEME_COLOR.black100,
       textAlign: 'left',
       paddingVertical: 6,
       paddingHorizontal: 4,
@@ -203,19 +203,19 @@ export const styles = ({ THEME_COLOR }: any) =>
     },
     categoryText: {
       fontSize: 9,
-      color: THEME_COLOR.textSecondary,
+      color: THEME_COLOR.black100,
       fontWeight: '600',
       marginBottom: 2,
     },
     descriptionText: {
       fontSize: 10,
-      color: THEME_COLOR.text,
+      color: THEME_COLOR.black100,
       lineHeight: 13,
     },
     tableCellUnit: {
       flex: 0.8,
       fontSize: 10,
-      color: THEME_COLOR.text,
+      color: THEME_COLOR.black100,
       textAlign: 'center',
       paddingVertical: 6,
       paddingHorizontal: 4,
@@ -225,7 +225,7 @@ export const styles = ({ THEME_COLOR }: any) =>
     tableCellQuantity: {
       flex: 0.8,
       fontSize: 10,
-      color: THEME_COLOR.text,
+      color: THEME_COLOR.black100,
       textAlign: 'center',
       paddingVertical: 6,
       paddingHorizontal: 4,
@@ -235,7 +235,7 @@ export const styles = ({ THEME_COLOR }: any) =>
     tableCellNumeric: {
       flex: 0.6,
       fontSize: 10,
-      color: THEME_COLOR.text,
+      color: THEME_COLOR.black100,
       textAlign: 'center',
       paddingVertical: 6,
       paddingHorizontal: 4,
@@ -250,7 +250,7 @@ export const styles = ({ THEME_COLOR }: any) =>
     termsLabel: {
       fontSize: 10,
       fontWeight: 'bold',
-      color: THEME_COLOR.text,
+      color: THEME_COLOR.black100,
       marginBottom: 8,
     },
     termsContent: {
@@ -263,7 +263,7 @@ export const styles = ({ THEME_COLOR }: any) =>
     },
     termsText: {
       fontSize: 10,
-      color: THEME_COLOR.text,
+      color: THEME_COLOR.black100,
       lineHeight: 15,
     },
 
@@ -282,7 +282,7 @@ export const styles = ({ THEME_COLOR }: any) =>
     },
     footerText: {
       fontSize: 9,
-      color: THEME_COLOR.textSecondary,
+      color: THEME_COLOR.black100,
       marginBottom: 2,
     },
 
@@ -300,13 +300,13 @@ export const styles = ({ THEME_COLOR }: any) =>
     errorTitle: {
       fontSize: 20,
       fontWeight: 'bold',
-      color: THEME_COLOR.text,
+      color: THEME_COLOR.black100,
       textAlign: 'center',
       marginBottom: 12,
     },
     errorText: {
       fontSize: 16,
-      color: THEME_COLOR.textSecondary,
+      color: THEME_COLOR.black100,
       textAlign: 'center',
       lineHeight: 24,
     },

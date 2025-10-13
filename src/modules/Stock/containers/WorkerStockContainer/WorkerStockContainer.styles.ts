@@ -44,7 +44,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
   assignmentText: {
     fontSize: SIZES.font_14,
-    color: THEME_COLOR.black,
+    color: THEME_COLOR.black100,
     marginBottom: SIZES.hp_p05,
     fontWeight: '500',
   },
@@ -66,7 +66,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
   },
   emptyText: {
     fontSize: SIZES.font_16,
-    color: THEME_COLOR.gray || '#666',
+    color: THEME_COLOR.black100,
     textAlign: 'center',
   },
   });

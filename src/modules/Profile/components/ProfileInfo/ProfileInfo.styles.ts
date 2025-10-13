@@ -21,11 +21,11 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     profileName: {
       ...TEXT_STYLE.h3,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       marginBottom: SIZES.hp_p05,
     },
     profileRole: {
       ...TEXT_STYLE.paragraphSmall,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
     },
   });

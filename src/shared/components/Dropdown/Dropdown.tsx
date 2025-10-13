@@ -45,16 +45,19 @@ const Dropdown: React.FC<DropdownProps> = ({
     placeholder: placeholder ?? 'Select Status',
     itemTextStyle: Styles.itemTextStyle,
     showsVerticalScrollIndicator: true,
+    itemContainerStyle: Styles.dropdownItemContainer,
+    activeColor: THEME_COLOR.lightGray,
+    selectedItemContainerStyle: Styles.selectedItemContainer,
     renderRightIcon: () =>
       RightIcon ? (
         <RightIcon
-          color={iconColor ?? THEME_COLOR.black}
+          color={iconColor ?? THEME_COLOR.black100}
           width={IconSize}
           height={IconSize}
         />
       ) : (
         <ICONS.CHEVRON_DOWN.default
-          color={iconColor ?? THEME_COLOR.black}
+          color={iconColor ?? THEME_COLOR.black100}
           width={IconSize}
           height={IconSize}
         />

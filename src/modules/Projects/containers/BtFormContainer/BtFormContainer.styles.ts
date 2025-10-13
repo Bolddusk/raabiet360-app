@@ -29,17 +29,17 @@ export const styles = ({ THEME_COLOR }: any) =>
       fontSize: 16,
       fontWeight: 'bold',
       marginBottom: 5,
-      color: '#000',
+      color: THEME_COLOR.black100,
     },
     companyDetails: {
       fontSize: 10,
-      color: '#000',
+      color: THEME_COLOR.black100,
       marginBottom: 2,
     },
     pageNumber: {
       fontSize: 12,
       fontWeight: 'bold',
-      color: '#000',
+      color: THEME_COLOR.black100,
     },
     documentTitle: {
       textAlign: 'center',
@@ -47,14 +47,14 @@ export const styles = ({ THEME_COLOR }: any) =>
       fontWeight: 'bold',
       textTransform: 'uppercase',
       marginVertical: 15,
-      color: '#000',
+      color: THEME_COLOR.black100,
     },
     workOrderNumber: {
       textAlign: 'right',
       fontSize: 14,
       fontWeight: 'bold',
       marginBottom: 20,
-      color: '#000',
+      color: THEME_COLOR.black100,
     },
     // General Info Grid
     generalInfo: {
@@ -73,7 +73,7 @@ export const styles = ({ THEME_COLOR }: any) =>
       borderBottomColor: THEME_COLOR.border || '#000',
       paddingBottom: 5,
       marginBottom: 10,
-      color: THEME_COLOR.text || '#000',
+      color: THEME_COLOR.black100,
     },
     infoGrid: {
       flexDirection: 'row',
@@ -91,13 +91,13 @@ export const styles = ({ THEME_COLOR }: any) =>
       fontWeight: 'bold',
       minWidth: 50,
       fontSize: 8,
-      color: THEME_COLOR.text || '#000',
+      color: THEME_COLOR.black100,
     },
     infoValue: {
       textAlign: 'right',
       maxWidth: 60,
       fontSize: 9,
-      color: THEME_COLOR.text || '#000',
+      color: THEME_COLOR.black100,
     },
     // Extracted Info Grid
     extractedInfo: {
@@ -125,12 +125,12 @@ export const styles = ({ THEME_COLOR }: any) =>
       fontSize: 9,
       fontWeight: 'bold',
       marginBottom: 2,
-      color: THEME_COLOR.text || '#000',
+      color: THEME_COLOR.black100,
     },
     extractedValue: {
       fontSize: 11,
       fontWeight: 'bold',
-      color: THEME_COLOR.text || '#000',
+      color: THEME_COLOR.black100,
     },
     // Objectives Grid
     objectives: {
@@ -158,12 +158,12 @@ export const styles = ({ THEME_COLOR }: any) =>
       fontSize: 9,
       fontWeight: 'bold',
       marginBottom: 2,
-      color: THEME_COLOR.text || '#000',
+      color: THEME_COLOR.black100,
     },
     objectiveValue: {
       fontSize: 11,
       fontWeight: 'bold',
-      color: THEME_COLOR.text || '#000',
+      color: THEME_COLOR.black100,
     },
     // Items Table
     itemsTable: {
@@ -211,7 +211,7 @@ export const styles = ({ THEME_COLOR }: any) =>
     tableCell: {
       flex: 0.8,
       fontSize: 9,
-      color: THEME_COLOR.text || '#000',
+      color: THEME_COLOR.black100,
       textAlign: 'center',
     },
     codeDescriptionCell: {
@@ -221,13 +221,13 @@ export const styles = ({ THEME_COLOR }: any) =>
     codeText: {
       fontSize: 9,
       fontWeight: 'bold',
-      color: THEME_COLOR.text || '#000',
+      color: THEME_COLOR.black100,
       textAlign: 'left',
       marginBottom: 2,
     },
     descriptionText: {
       fontSize: 8,
-      color: THEME_COLOR.text || '#000',
+      color: THEME_COLOR.black100,
       textAlign: 'left',
       lineHeight: 10,
     },
@@ -240,7 +240,7 @@ export const styles = ({ THEME_COLOR }: any) =>
     },
     editDate: {
       fontSize: 10,
-      color: '#000',
+      color: THEME_COLOR.black100,
     },
     signatureSection: {
       alignItems: 'center',
@@ -254,14 +254,14 @@ export const styles = ({ THEME_COLOR }: any) =>
     signatureLabel: {
       fontSize: 10,
       fontWeight: 'bold',
-      color: '#000',
+      color: THEME_COLOR.black100,
     },
     originalNote: {
       textAlign: 'center',
       fontSize: 10,
       fontWeight: 'bold',
       textTransform: 'uppercase',
-      color: '#000',
+      color: THEME_COLOR.black100,
     },
     // Error styles
     errorContainer: {

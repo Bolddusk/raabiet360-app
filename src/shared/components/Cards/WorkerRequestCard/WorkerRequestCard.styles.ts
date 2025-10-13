@@ -32,7 +32,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     requestType: {
       ...TEXT_STYLE.paragraph1,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       fontWeight: '600',
       marginBottom: SIZES.hp_1,
     },
@@ -53,17 +53,17 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     infoText: {
       ...TEXT_STYLE.paragraphSmall,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       flex: 1,
       marginLeft: SIZES.wp_1,
     },
     name: {
       ...TEXT_STYLE.paragraph1,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
     },
     address: {
       ...TEXT_STYLE.paragraphSmall,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
     },
     quantity: {
       ...TEXT_STYLE.paragraphSmall,
@@ -85,12 +85,12 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     timeValue: {
       ...TEXT_STYLE.paragraphSmall,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       fontWeight: '500',
     },
     requestTime: {
       ...TEXT_STYLE.paragraphSmall,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       marginBottom: SIZES.hp_1,
     },
     statusContainer: {

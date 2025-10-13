@@ -28,18 +28,18 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     count: {
       ...TEXT_STYLE.h2,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
     },
     primaryLabel: {
       ...TEXT_STYLE.paragraph,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       marginHorizontal: SIZES.wp_3,
       marginTop: SIZES.hp_p05,
       textAlign: 'center',
     },
     secondaryLabel: {
       ...TEXT_STYLE.paragraph,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       // marginTop: SIZES.hp_1,
       maxWidth: SIZES.wp_25,
     },

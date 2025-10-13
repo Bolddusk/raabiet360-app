@@ -21,12 +21,12 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     title: {
       ...TEXT_STYLE.h3,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       marginBottom: 4,
     },
     pickupTime: {
       ...TEXT_STYLE.paragraphSmall,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
     },
     separator: {
       height: 1,
@@ -39,11 +39,11 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     },
     label: {
       ...TEXT_STYLE.paragraphSmall,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
     },
     value: {
       ...TEXT_STYLE.paragraphSmall,
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
     },
     statusBadge: {
       alignSelf: 'flex-start',

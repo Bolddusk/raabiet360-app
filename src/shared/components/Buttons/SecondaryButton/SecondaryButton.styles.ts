@@ -15,7 +15,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
       ...commonStyles.rowCenter,
     },
     text: {
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.black100,
       ...TEXT_STYLE.buttonPrimary,
       textAlign: 'center',
     },

@@ -18,7 +18,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
     sectionTitle: {
       ...TEXT_STYLE.h3,
       marginBottom: SIZES.hp_2,
-      color:THEME_COLOR.black
+      color: THEME_COLOR.primary
     },
     columnWrapper: {
       justifyContent: 'flex-start',

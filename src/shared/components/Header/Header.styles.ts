@@ -88,7 +88,7 @@ export const styles = ({ THEME_COLOR }: { THEME_COLOR: ColorPalette }) =>
       ...TEXT_STYLE.paragraphSmall,
     },
     labelActive: {
-      color: THEME_COLOR.black,
+      color: THEME_COLOR.primary,
       ...TEXT_STYLE.paragraphSmall,
     },
     notificationButton: {
