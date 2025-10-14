@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { ScrollView, View, Text, Alert } from 'react-native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useRoute, useNavigation } from '@react-navigation/native';
+import { ScrollView, Text, View } from 'react-native';
 
 import { useTheme } from '@providers';
 import {
+  ActivityLoader,
   FullScreenWrapper,
   Header,
   SafeAreaViewWrapper,
   ScreenWrapper,
-  ActivityLoader,
 } from '@shared/components';
-import { styles } from './QuotationFormContainer.styles';
 import { useQuotationForm } from '../../hooks/useQuotationForm';
+import { styles } from './QuotationFormContainer.styles';
+import useScreenProtection from '@shared/hooks/useScreenProtection';
 
 const QuotationFormContainer = () => {
   const { THEME_COLOR } = useTheme();
@@ -22,6 +23,7 @@ const QuotationFormContainer = () => {
   const navigation = useNavigation();
   
   const { projectId } = route.params || {};
+  useScreenProtection();
   const { loading, quotationData, error, fetchQuotationData } = useQuotationForm();
 
   useEffect(() => {
