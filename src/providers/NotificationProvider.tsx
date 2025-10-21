@@ -134,7 +134,7 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
 
   const addNotificationToTop = useCallback((newNotification: any) => {
     setNotifications(prev => [newNotification, ...prev]);
-    // setUnreadCount(prev => prev + 1);
+    setUnreadCount(prev => prev + 1);
   }, []);
   
   const removeFcmToken = async () => {
